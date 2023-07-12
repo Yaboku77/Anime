@@ -2,6 +2,65 @@
 <html>
 <head>
   <title>Anime Data Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    pre {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 5px;
+      overflow: auto;
+    }
+
+    #copyButton {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <h1>Anime Data Generator</h1>
@@ -12,7 +71,11 @@
     <button onclick="generateCode()">Search</button>
   </div>
 
-  <pre id="generatedCode"></pre>
+  <pre id="generatedCodeBox">
+    <code id="generatedCode"></code>
+  </pre>
+
+  <button id="copyButton" onclick="copyGeneratedCode()">Copy Code</button>
 
   <script>
     function getAnimeData(animeId) {
@@ -40,7 +103,8 @@
     }
 
     function generateHTMLCode(data) {
-      const code = `<div>
+      const code = `
+<div>
   <a><img border="0" data-original-height="450" data-original-width="800" height="360" src="" width="640" /></a>
 </div>
 
@@ -110,10 +174,24 @@
       <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">Movies</a>
       <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">OVAs</a>
     </div>
-  </div>
-`;
+  </div>`;
 
       return code;
+    }
+
+    function copyGeneratedCode() {
+      const codeElement = document.getElementById('generatedCode');
+      const code = codeElement.textContent;
+      
+      const tempInput = document.createElement('textarea');
+      tempInput.value = code;
+      document.body.appendChild(tempInput);
+      
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      
+      alert('Code copied to clipboard!');
     }
   </script>
 

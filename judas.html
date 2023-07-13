@@ -165,13 +165,32 @@
         word-break: break-all;
         overflow: auto;
     }
+    #generatedDataBox1 {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      background-color: #fff;
+      word-break: break-all;
+    }
+
+    #generatedDataBox2 {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      background-color: #fff;
+      word-break: break-all;
+    }
   </style>
 </head>
 <body>
-  <h1>Anime Data Generator</h1>
+  <h1>Anime Data Generator Judas</h1>
 
   <div>
-    <label for="animeId">Enter Anime ID:</label>
+    
     <input class="search" type="text" id="animeId" placeholder="Anime ID">
     <button onclick="generateCode()">Search</button>
   </div>
@@ -179,6 +198,9 @@
   <div id="generatedCodeBox">
     <pre id="generatedCode"></pre>
   </div>
+
+  <div id="generatedDataBox1"></div>
+  <div id="generatedDataBox2"></div>
 
   <button id="copyButton" onclick="copyGeneratedCode()">Copy Code</button>
   <button id="addButton" onclick="addButton()">Add Button</button>
@@ -364,6 +386,24 @@
       document.execCommand('copy');
       window.getSelection().removeAllRanges();
       alert('Code copied to clipboard!');
+    }
+    
+    function generateCode() {
+      const animeId = document.getElementById('animeId').value;
+      getAnimeData(animeId)
+        .then(data => {
+          const code = generateHTMLCode(data);
+          document.getElementById('generatedCode').textContent = code;
+
+          const generatedDataBox1 = document.getElementById('generatedDataBox1');
+          generatedDataBox1.textContent = data.data.title;
+
+          const generatedDataBox2 = document.getElementById('generatedDataBox2');
+          generatedDataBox2.textContent = `${data.data.type}, ${data.data.status}, Ep ${data.data.episodes}, ${data.data.genres.map(genre => genre.name).join(', ')}, ${data.data.themes.map(theme => theme.name).join(', ')}, ${data.data.demographics.map(demographic => demographic.name).join(', ')}`;
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   </script>
 </body>

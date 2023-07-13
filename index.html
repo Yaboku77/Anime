@@ -14,82 +14,168 @@
                   <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' sizes='144x144'/>
                     <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='152x152'/>
                       <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='180x180'/>
+
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 20;
-      padding: 20px;
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    input[type="text"] {
-      padding: 8px;
-      border-radius: 3px;
-      border: 1px solid #ccc;
-      width: 100%;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    pre {
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 5px;
-      overflow: auto;
-    }
-
-    #copyButton {
-      margin-top: 10px;
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f2f2f2;
       }
 
-      .container {
-        padding: 10px;
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
       }
 
       input[type="text"] {
-        padding: 6px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 200px;
       }
 
       button {
-        padding: 8px 16px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
       }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #codeBox {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 20px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        background-color: #fff;
+        word-break: break-all;
+      }
+
+      #copyButton {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #008CBA;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      #copyButton:hover {
+        background-color: #006080;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        background-color: #0693e3;
+        background-image: linear-gradient(135deg, #0693e3, #9b51e0);
+      }
+
+      .button.small {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .button.blue {
+        background-color: #0693e3;
+        background-image: linear-gradient(135deg, #0693e3, #9b51e0);
+      }
+
+      .button.blue:hover {
+        background-color: #0573bf;
+        background-image: linear-gradient(135deg, #0573bf, #7c47ad);
+      }
+
+      .button-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .button-wrapper button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .button-wrapper button:first-child {
+        margin-right: 10px;
+      }
+
+      .button-wrapper button:hover {
+        background-color: #45a049;
+      }
+      
+      .button-inputs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      
+      .button-inputs input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 200px;
+      }
+      
+      .added-buttons {
+        margin-top: 20px;
+      }
+      
+      .added-buttons button {
+        margin-right: 10px;
+      }
+
+      .added-buttons {
+        margin-top: 20px;
+      }
+
+      .added-buttons button {
+        margin-right: 10px;
+      }
+
+    .added-buttons {
+      margin-top: 20px;
+    }
+
+    .added-buttons button {
+      margin-right: 10px;
+    }
+
+    #generatedCodeBox {
+      border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 20px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        background-color: #fff;
+        word-break: break-all;
+        overflow: auto;
     }
   </style>
 </head>
@@ -98,17 +184,21 @@
 
   <div>
     <label for="animeId">Enter Anime ID:</label>
-    <input type="text" id="animeId" placeholder="Anime ID">
+    <input class="search" type="text" id="animeId" placeholder="Anime ID">
     <button onclick="generateCode()">Search</button>
   </div>
 
-  <pre id="generatedCodeBox">
-    <code id="generatedCode"></code>
-  </pre>
+  <div id="generatedCodeBox">
+    <pre id="generatedCode"></pre>
+  </div>
 
   <button id="copyButton" onclick="copyGeneratedCode()">Copy Code</button>
+  <button id="addButton" onclick="addButton()">Add Button</button>
+  <div class="added-buttons" id="addedButtons"></div>
 
   <script>
+    let buttons = [];
+
     function getAnimeData(animeId) {
       let url = `https://api.jikan.moe/v4/anime/${animeId}`;
       return fetch(url)
@@ -134,98 +224,127 @@
     }
 
     function generateHTMLCode(data) {
+      let buttonsHTML = '';
+      for (const button of buttons) {
+        buttonsHTML += `<a href="${button.url}" class="shortc-button small blue" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);">${button.title}</a>`;
+      }
+
       const code = `
-<div>
-  <a><img border="0" data-original-height="450" data-original-width="800" height="360" src="" width="640" /></a>
-</div>
+        <div>
+          <a><img border="0" data-original-height="450" data-original-width="800" height="360" src="" width="640" /></a>
+        </div>
 
-<div class="review_wrap">
-  <div class="review-box review-bottom review-percentage" id="review-box">
-    <h2 class="review-box-header the-global-title" id="title">${data.data.title}</h2>
+        <div class="review_wrap">
+          <div class="review-box review-bottom review-percentage" id="review-box">
+            <h2 class="review-box-header the-global-title" id="title">${data.data.title}</h2>
 
-    <div class="review-summary">
-      <div class="review-final-score">
-        <h3 id="score">${data.data.score}</h3>
+            <div class="review-summary">
+              <div class="review-final-score">
+                <h3 id="score">${data.data.score}</h3>
 
-        <h4>Average Rating</h4>
-      </div>
+                <h4>Average Rating</h4>
+              </div>
 
-      <div class="review-short-summary">
-        <p id="synopsis">${data.data.synopsis}</p>
-      </div>
-    </div>
-  </div>
-</div>
+              <div class="review-short-summary">
+                <p id="synopsis">${data.data.synopsis}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="toggle tie-sc-open">
-  <h3 class="toggle-head">
-    Information <span class="fa fa-angle-down"></span>
-  </h3>
-  <div class="toggle-content">
-    <ul style="text-align: left;">
-      <li id='English'>English: ${data.data.title_english}</li>
-      <li id='Japanese'>Japanese: ${data.data.title_japanese}</li>
-      <li id='Synonyms'>Synonyms: ${data.data.title_synonyms.join(', ')}</li>
-      <li id='type'>Type: ${data.data.type}</li>
-      <li id='episodes'>Episodes: ${data.data.episodes}</li>
-      <li id='status'>Status: ${data.data.status}</li>
-      <li id='aired'>Aired: ${data.data.aired.string}</li>
-      <li id='season'>Season: ${data.data.season}</li>
-      <li id='broadcast'>Broadcast: ${data.data.broadcast.string}</li>
-      <li id='producers'>Producers: ${data.data.producers.map(producer => producer.name).join(', ')}</li>
-      <li id='licensors'>Licensors: ${data.data.licensors.map(licensor => licensor.name).join(', ')}</li>
-      <li id='studios'>Studios: ${data.data.studios.map(studio => studio.name).join(', ')}</li>
-      <li id='source'>Source: ${data.data.source}</li>
-      <li id='genres'>Genres: ${data.data.genres.map(genre => genre.name).join(', ')}</li>
-      <li id='theme'>Themes: ${data.data.themes.map(theme => theme.name).join(', ')}</li>
-      <li id='demographics'>Demographics: ${data.data.demographics.map(demographic => demographic.name).join(', ')}</li>
-      <li id="duration">Duration: ${data.data.duration}</li>
-      <li id='rating'>Rating: ${data.data.rating}</li>
-    </ul>
-  </div>
-</div>
-<div class="uk-alert uk-alert-primary" data-uk-alert="">
-    <!--a class="uk-alert-close" data-uk-close></a-->
-    <p>
-      <span class="uk-margin-xsmall-right" data-uk-icon="happy"></span> To access
-      the private drive just open Google Group and join the Google Group, ignore
-      the rest. After that, Enjoy...&nbsp;<a href="https://groups.google.com/g/bondgreninja" target="_blank">Here</a>
-    </p>
-  </div>
+        <div class="toggle tie-sc-open">
+          <h3 class="toggle-head">
+            Information <span class="fa fa-angle-down"></span>
+          </h3>
+          <div class="toggle-content">
+            <ul style="text-align: left;">
+              <li id='English'>English: ${data.data.title_english}</li>
+              <li id='Japanese'>Japanese: ${data.data.title_japanese}</li>
+              <li id='Synonyms'>Synonyms: ${data.data.title_synonyms.join(', ')}</li>
+              <li id='type'>Type: ${data.data.type}</li>
+              <li id='episodes'>Episodes: ${data.data.episodes}</li>
+              <li id='status'>Status: ${data.data.status}</li>
+              <li id='aired'>Aired: ${data.data.aired.string}</li>
+              <li id='season'>Season: ${data.data.season}</li>
+              <li id='broadcast'>Broadcast: ${data.data.broadcast.string}</li>
+              <li id='producers'>Producers: ${data.data.producers.map(producer => producer.name).join(', ')}</li>
+              <li id='licensors'>Licensors: ${data.data.licensors.map(licensor => licensor.name).join(', ')}</li>
+              <li id='studios'>Studios: ${data.data.studios.map(studio => studio.name).join(', ')}</li>
+              <li id='source'>Source: ${data.data.source}</li>
+              <li id='genres'>Genres: ${data.data.genres.map(genre => genre.name).join(', ')}</li>
+              <li id='theme'>Themes: ${data.data.themes.map(theme => theme.name).join(', ')}</li>
+              <li id='demographics'>Demographics: ${data.data.demographics.map(demographic => demographic.name).join(', ')}</li>
+              <li id="duration">Duration: ${data.data.duration}</li>
+              <li id='rating'>Rating: ${data.data.rating}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="uk-alert uk-alert-primary" data-uk-alert="">
+          <!--a class="uk-alert-close" data-uk-close></a-->
+          <p>
+            <span class="uk-margin-xsmall-right" data-uk-icon="happy"></span> To access
+            the private drive just open Google Group and join the Google Group, ignore
+            the rest. After that, Enjoy...&nbsp;<a href="https://groups.google.com/g/bondgreninja" target="_blank">Here</a>
+          </p>
+        </div>
 
-  <div class="toggle tie-sc-open">
-    <h3 class="toggle-head">
-      Google Drive <span aria-hidden="true" class="fa fa-angle-down"></span>
-    </h3>
-    <div class="toggle-content" style="text-align: center;">
-      <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">480P</a>
-      <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">720P</a>
-      <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">1080P</a>
-      <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">1080P ULTRA BD Remux</a>
-      <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">Movies</a>
-      <a class="shortc-button small blue" href="#" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);" target="_blank">OVAs</a>
-    </div>
-  </div>`;
+        <div class="toggle tie-sc-open">
+          <h3 class="toggle-head">
+            Google Drive <span aria-hidden="true" class="fa fa-angle-down"></span>
+          </h3>
+          <div class="toggle-content" style="text-align: center;">
+            ${buttonsHTML}
+          </div>
+        </div>`;
 
       return code;
     }
 
+    function addButton() {
+      const title = prompt('Enter button title:');
+      const url = prompt('Enter button URL:');
+
+      buttons.push({ title, url });
+
+      const addedButtons = document.getElementById('addedButtons');
+      const buttonElement = document.createElement('button');
+      buttonElement.textContent = title;
+      buttonElement.onclick = () => {
+        editButton(title, url);
+      };
+      addedButtons.appendChild(buttonElement);
+
+      const codeBox = document.getElementById('generatedCodeBox');
+      const code = generateHTMLCode();
+      codeBox.textContent = code;
+    }
+
+    function editButton(title, url) {
+      const newTitle = prompt('Enter new button title:', title);
+      const newUrl = prompt('Enter new button URL:', url);
+
+      const button = buttons.find(btn => btn.title === title && btn.url === url);
+      if (button) {
+        button.title = newTitle;
+        button.url = newUrl;
+      }
+
+      const codeBox = document.getElementById('generatedCodeBox');
+      const code = generateHTMLCode();
+      codeBox.textContent = code;
+    }
+
     function copyGeneratedCode() {
-      const codeElement = document.getElementById('generatedCode');
-      const code = codeElement.textContent;
-      
-      const tempInput = document.createElement('textarea');
-      tempInput.value = code;
-      document.body.appendChild(tempInput);
-      
-      tempInput.select();
+      const codeBox = document.getElementById('generatedCodeBox');
+      const range = document.createRange();
+      range.selectNode(codeBox);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
       document.execCommand('copy');
-      document.body.removeChild(tempInput);
-      
+      window.getSelection().removeAllRanges();
       alert('Code copied to clipboard!');
     }
   </script>
-
 </body>
   </html>
   

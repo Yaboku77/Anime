@@ -236,17 +236,17 @@
 
         <div class="review_wrap">
           <div class="review-box review-bottom review-percentage" id="review-box">
-            <h2 class="review-box-header the-global-title" id="title">${data.data.title}</h2>
+            <h2 class="review-box-header the-global-title">${data.data.title}</h2>
 
             <div class="review-summary">
               <div class="review-final-score">
-                <h3 id="score">${data.data.score}</h3>
+                <h3>${data.data.score}</h3>
 
                 <h4>Average Rating</h4>
               </div>
 
               <div class="review-short-summary">
-                <p id="synopsis">${data.data.synopsis}</p>
+                <p>${data.data.synopsis}</p>
               </div>
             </div>
           </div>
@@ -258,24 +258,24 @@
           </h3>
           <div class="toggle-content">
             <ul style="text-align: left;">
-              <li id='English'>English: ${data.data.title_english}</li>
-              <li id='Japanese'>Japanese: ${data.data.title_japanese}</li>
-              <li id='Synonyms'>Synonyms: ${data.data.title_synonyms.join(', ')}</li>
-              <li id='type'>Type: ${data.data.type}</li>
-              <li id='episodes'>Episodes: ${data.data.episodes}</li>
-              <li id='status'>Status: ${data.data.status}</li>
-              <li id='aired'>Aired: ${data.data.aired.string}</li>
-              <li id='season'>Season: ${data.data.season}</li>
-              <li id='broadcast'>Broadcast: ${data.data.broadcast.string}</li>
-              <li id='producers'>Producers: ${data.data.producers.map(producer => producer.name).join(', ')}</li>
-              <li id='licensors'>Licensors: ${data.data.licensors.map(licensor => licensor.name).join(', ')}</li>
-              <li id='studios'>Studios: ${data.data.studios.map(studio => studio.name).join(', ')}</li>
-              <li id='source'>Source: ${data.data.source}</li>
-              <li id='genres'>Genres: ${data.data.genres.map(genre => genre.name).join(', ')}</li>
+              <li>English: ${data.data.title_english}</li>
+              <li>Japanese: ${data.data.title_japanese}</li>
+              <li>Synonyms: ${data.data.title_synonyms.join(', ')}</li>
+              <li>Type: ${data.data.type}</li>
+              <li>Episodes: ${data.data.episodes}</li>
+              <li>Status: ${data.data.status}</li>
+              <li>Aired: ${data.data.aired.string}</li>
+              <li>Season: ${data.data.season}</li>
+              <li>Broadcast: ${data.data.broadcast.string}</li>
+              <li>Producers: ${data.data.producers.map(producer => producer.name).join(', ')}</li>
+              <li>Licensors: ${data.data.licensors.map(licensor => licensor.name).join(', ')}</li>
+              <li>Studios: ${data.data.studios.map(studio => studio.name).join(', ')}</li>
+              <li>Source: ${data.data.source}</li>
+              <li>Genres: ${data.data.genres.map(genre => genre.name).join(', ')}</li>
               <li id='theme'>Themes: ${data.data.themes.map(theme => theme.name).join(', ')}</li>
-              <li id='demographics'>Demographics: ${data.data.demographics.map(demographic => demographic.name).join(', ')}</li>
-              <li id="duration">Duration: ${data.data.duration}</li>
-              <li id='rating'>Rating: ${data.data.rating}</li>
+              <li>Demographics: ${data.data.demographics.map(demographic => demographic.name).join(', ')}</li>
+              <li>Duration: ${data.data.duration}</li>
+              <li>Rating: ${data.data.rating}</li>
             </ul>
           </div>
         </div>
@@ -346,5 +346,4 @@
     }
   </script>
 </body>
-  </html>
-  
+</html>

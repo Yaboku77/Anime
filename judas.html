@@ -234,9 +234,16 @@
     }
 
     function generateHTMLCode(data) {
-      let buttonsHTML = '';
+      let buttonsHTML = '<tr>
+          <td><span class="num">#1</span> GD</td>
+          <td>Eng</td>
+          <td><span>${button.title}</span></td>
+          <td>
+            <a class="btn sm rnd" href="${button.url}" rel="nofollow" target="_blank">Download</a>
+          </td>
+        </tr>';
       for (const button of buttons) {
-        buttonsHTML += `<a href="${button.url}" class="shortc-button small blue" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);">${button.title}</a>`;
+        buttonsHTML += ``;
       }
 
       const code = `

@@ -411,7 +411,7 @@
           generatedDataBox1.textContent = data.data.title;
 
           const generatedDataBox2 = document.getElementById('generatedDataBox2');
-          generatedDataBox2.textContent = `${data.data.type}, ${data.data.status}, Ep ${data.data.episodes}, ${data.data.genres.map(genre => genre.name).join(', ')}, ${data.data.themes.map(theme => theme.name).join(', ')}, ${data.data.demographics.map(demographic => demographic.name).join(', ')}`;
+          generatedDataBox2.textContent = `${data.data.type}, ${data.data.status}, Ep ${data.data.episodes},${data.data.score}, ${data.data.genres.map(genre => genre.name).join(', ')}, ${data.data.themes.map(theme => theme.name).join(', ')}, ${data.data.demographics.map(demographic => demographic.name).join(', ')}`;
         })
         .catch(error => {
           console.error(error);

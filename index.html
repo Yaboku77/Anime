@@ -3,161 +3,160 @@
 <head>
   <title>Anime Data Generator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--Meta Icon-->
-    <link expr:href='data:blog.homepageUrl + &quot;/favicon.ico&quot;' rel='icon' type='image/x-icon'/>
-      <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon'/>
-        <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='57x57'/>
-          <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='72x72'/>
-            <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='76x76'/>
-              <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='114x114'/>
-                <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='120x120'/>
-                  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' sizes='144x144'/>
-                    <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='152x152'/>
-                      <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='180x180'/>
-
+  <!-- Meta Icon -->
+  <link expr:href='data:blog.homepageUrl + &quot;/favicon.ico&quot;' rel='icon' type='image/x-icon'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='57x57'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='72x72'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='76x76'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='114x114'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='120x120'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' sizes='144x144'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='152x152'/>
+  <link href='https://i.ibb.co/3SYRk6S/IMG-20230713-072224.jpg' rel='apple-touch-icon' sizes='180x180'/>
 
   <style>
     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: #f2f2f2;
-      }
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
 
-      h1 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-      input[type="text"] {
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 200px;
-      }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 200px;
+    }
 
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-      button:hover {
-        background-color: #45a049;
-      }
+    button:hover {
+      background-color: #45a049;
+    }
 
-      #codeBox {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin-top: 20px;
-        font-family: monospace;
-        white-space: pre-wrap;
-        background-color: #fff;
-        word-break: break-all;
-      }
+    #codeBox {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      background-color: #fff;
+      word-break: break-all;
+    }
 
-      #copyButton {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #008CBA;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 20px;
-      }
+    #copyButton {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
 
-      #copyButton:hover {
-        background-color: #006080;
-      }
+    #copyButton:hover {
+      background-color: #006080;
+    }
 
-      .button {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        text-decoration: none;
-        cursor: pointer;
-        background-color: #0693e3;
-        background-image: linear-gradient(135deg, #0693e3, #9b51e0);
-      }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: #0693e3;
+      background-image: linear-gradient(135deg, #0693e3, #9b51e0);
+    }
 
-      .button.small {
-        padding: 8px 16px;
-        font-size: 14px;
-      }
+    .button.small {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
 
-      .button.blue {
-        background-color: #0693e3;
-        background-image: linear-gradient(135deg, #0693e3, #9b51e0);
-      }
+    .button.blue {
+      background-color: #0693e3;
+      background-image: linear-gradient(135deg, #0693e3, #9b51e0);
+    }
 
-      .button.blue:hover {
-        background-color: #0573bf;
-        background-image: linear-gradient(135deg, #0573bf, #7c47ad);
-      }
+    .button.blue:hover {
+      background-color: #0573bf;
+      background-image: linear-gradient(135deg, #0573bf, #7c47ad);
+    }
 
-      .button-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-      }
+    .button-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-      .button-wrapper button {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+    .button-wrapper button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-      .button-wrapper button:first-child {
-        margin-right: 10px;
-      }
+    .button-wrapper button:first-child {
+      margin-right: 10px;
+    }
 
-      .button-wrapper button:hover {
-        background-color: #45a049;
-      }
-      
-      .button-inputs {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-      
-      .button-inputs input {
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 200px;
-      }
-      
-      .added-buttons {
-        margin-top: 20px;
-      }
-      
-      .added-buttons button {
-        margin-right: 10px;
-      }
+    .button-wrapper button:hover {
+      background-color: #45a049;
+    }
 
-      .added-buttons {
-        margin-top: 20px;
-      }
+    .button-inputs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
-      .added-buttons button {
-        margin-right: 10px;
-      }
+    .button-inputs input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 200px;
+    }
+
+    .added-buttons {
+      margin-top: 20px;
+    }
+
+    .added-buttons button {
+      margin-right: 10px;
+    }
+
+    .added-buttons {
+      margin-top: 20px;
+    }
+
+    .added-buttons button {
+      margin-right: 10px;
+    }
 
     .added-buttons {
       margin-top: 20px;
@@ -169,31 +168,92 @@
 
     #generatedCodeBox {
       border: 1px solid #ccc;
-        padding: 10px;
-        margin-top: 20px;
-        font-family: monospace;
-        white-space: pre-wrap;
-        background-color: #fff;
-        word-break: break-all;
-        overflow: auto;
+      padding: 10px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      background-color: #fff;
+      word-break: break-all;
+      overflow: auto;
     }
+    
+    
+    /* Style for Resolution Selector */
+    
+#resolutionSelect,
+#typeSelect {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  appearance: none;
+  background-color: #fff;
+  color: #333;
+  margin-right: 10px;
+}
+
+#resolutionSelect:focus,
+#typeSelect:focus {
+  border-color: #0693e3;
+  outline: none;
+}
+
+#selectorsContainer {
+  display: flex;
+  align-items: center;
+  padding-bottom:5px;
+}
+
+.genbox {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      background-color: #fff;
+      word-break: break-all;
+    }
+
   </style>
 </head>
 <body>
   <h1>Anime Data Generator</h1>
+<div id="selectorsContainer">
+  <!-- Resolution Selector -->
+  <select id="resolutionSelect" multiple>
+    <option value="480p">480p</option>
+    <option value="720p">720p</option>
+    <option value="1080p">1080p</option>
+    <option value="1080p">2160p</option>
+  </select>
+
+  <!-- Type Selector -->
+  <select id="typeSelect" multiple>
+    <option value="Dual Audio">Dual Audio</option>
+    <option value="Eng Sub">Eng Sub</option>
+    <option value="BD">BD</option>
+    <option value="WEB">WEB</option>
+  </select>
+</div>
 
   <div>
     <input class="search" type="text" id="animeId" placeholder="Anime ID">
     <button onclick="generateCode()">Search</button>
   </div>
 
+<div class='genbox' id="generatedDataBox1"></div>
+<div class='genbox' id="generatedDataBox2"></div>
+
+
   <div id="generatedCodeBox">
-    <pre id="generatedCode"></pre>
+    <div id="generatedCode"></div>
   </div>
 
   <button id="copyButton" onclick="copyGeneratedCode()">Copy Code</button>
   <button id="addButton" onclick="addButton()">Add Button</button>
   <div class="added-buttons" id="addedButtons"></div>
+
 
   <script>
     let buttons = [];
@@ -211,21 +271,41 @@
     }
 
     function generateCode() {
-      const animeId = document.getElementById('animeId').value;
-      getAnimeData(animeId)
-        .then(data => {
-          const code = generateHTMLCode(data);
-          document.getElementById('generatedCode').textContent = code;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
+  const animeId = document.getElementById('animeId').value;
+  let selectedResolutions, selectedTypes; // Declare the variables here
 
-    function generateHTMLCode(data) {
+  getAnimeData(animeId)
+    .then(data => {
+      // Populate the selectedResolutions and selectedTypes variables
+      selectedResolutions = Array.from(document.getElementById('resolutionSelect').selectedOptions).map(option => option.value);
+      selectedTypes = Array.from(document.getElementById('typeSelect').selectedOptions).map(option => option.value);
+      
+      // Modify the score to be on a 0 to 100 scale
+      modifiedScore = data.data.score * 10;
+
+      // Display data in generatedDataBox1
+      const generatedDataBox1 = document.getElementById('generatedDataBox1');
+      generatedDataBox1.textContent = data.data.title;
+
+      // Display data in generatedDataBox2
+      const generatedDataBox2 = document.getElementById('generatedDataBox2');
+      generatedDataBox2.textContent = `${data.data.type}, ${data.data.status} ${data.data.genres.map(genre => genre.name).join(', ')}, ${data.data.themes.map(theme => theme.name).join(', ')}, ${data.data.demographics.map(demographic => demographic.name).join(', ')},${data.data.producers.map(producer => producer.name).join(', ')},${data.data.licensors.map(licensor => licensor.name).join(', ')},${data.data.studios.map(studio => studio.name).join(', ')},${selectedTypes.join(', ')},${selectedResolutions.join(', ')}`;
+
+      // Generate the full HTML code and display it in the original generatedCodeBox
+      const code = generateHTMLCode(data, selectedResolutions, selectedTypes);
+      document.getElementById('generatedCode').textContent = code;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+
+
+    function generateHTMLCode(data, selectedResolutions, selectedTypes) {
       let buttonsHTML = '';
       for (const button of buttons) {
-        buttonsHTML += `<a href="${button.url}" class="shortc-button small blue" style="background: linear-gradient(135deg, rgb(6, 147, 227), rgb(155, 81, 224)) rgb(255, 255, 255);">${button.title}</a>`;
+        buttonsHTML += `<a class="shortc-button small blue" href="${button.url}">${button.title}</a>`;
       }
 
       const code = `
@@ -236,7 +316,14 @@
         <div class="review_wrap">
           <div class="review-box review-bottom review-percentage" id="review-box">
             <h2 class="review-box-header the-global-title">${data.data.title}</h2>
-
+            
+            <div class="review-item">
+        <span
+          ><h5>MyAnimeList - ${data.data.score}</h5>
+          <span style="width:${modifiedScore}" data-width="${modifiedScore}"></span
+        ></span>
+            </div>
+            
             <div class="review-summary">
               <div class="review-final-score">
                 <h3>${data.data.score}</h3>
@@ -266,26 +353,28 @@
               <li>Aired: ${data.data.aired.string}</li>
               <li>Season: ${data.data.season}</li>
               <li>Broadcast: ${data.data.broadcast.string}</li>
-              <li>Producers: ${data.data.producers.map(producer => producer.name).join(', ')}</li>
-              <li>Licensors: ${data.data.licensors.map(licensor => licensor.name).join(', ')}</li>
-              <li>Studios: ${data.data.studios.map(studio => studio.name).join(', ')}</li>
+              <li>Producers: ${data.data.producers.map(producer => `<a href="/${producer.name}">${producer.name}</a>`).join(', ')}</li>
+              <li>Licensors: ${data.data.licensors.map(licensor => `<a href="/${licensor.name}">${licensor.name}</a>`).join(', ')}</li>
+              <li>Studios: ${data.data.studios.map(studio => `<a href="/${studio.name}">${studio.name}</a>`).join(', ')}</li>
               <li>Source: ${data.data.source}</li>
-              <li>Genres: ${data.data.genres.map(genre => genre.name).join(', ')}</li>
+              <li>Genres: ${data.data.genres.map(genre => `<a href="/label/${genre.name}">${genre.name}</a>`).join(', ')}</li>
               <li>Themes: ${data.data.themes.map(theme => theme.name).join(', ')}</li>
               <li>Demographics: ${data.data.demographics.map(demographic => demographic.name).join(', ')}</li>
               <li>Duration: ${data.data.duration}</li>
               <li>Rating: ${data.data.rating}</li>
+              <li>Resolution: ${selectedResolutions.join(', ')}</li>
+              <li>Type: ${selectedTypes.join(', ')}</li>
             </ul>
           </div>
         </div>
 
+        <div class="box download">
+          <div class="box-inner-block">
+            <span class="fa tie-shortcode-boxicon"></span>To access the private drive just open Google Group and join the Google Group, ignore the rest.<br />
+            After that, Enjoy&#8230; <a href="https://groups.google.com/g/bondgreninja" target="_blank" rel="noopener">Here</a>
+          </div>
+        </div>
 
-        <div class="box download  ">
-			    <div class="box-inner-block">
-				     <span class="fa tie-shortcode-boxicon"></span>To access the private drive just open Google Group and join the Google Group, ignore the rest.<br />
-After that, Enjoy&#8230; <a href="https://groups.google.com/g/bondgreninja" target="_blank" rel="noopener">Here</a>
-			    </div>
-		    </div>
         <div class="toggle tie-sc-open">
           <h3 class="toggle-head">
             Google Drive <span aria-hidden="true" class="fa fa-angle-down"></span>
@@ -342,6 +431,8 @@ After that, Enjoy&#8230; <a href="https://groups.google.com/g/bondgreninja" targ
       window.getSelection().removeAllRanges();
       alert('Code copied to clipboard!');
     }
+    
+    
   </script>
 </body>
 </html>

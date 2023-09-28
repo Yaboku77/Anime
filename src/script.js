@@ -104,8 +104,8 @@ let buttons = [];
               <li>Demographics: ${data.data.demographics.map(demographic => demographic.name).join(', ')}</li>
               <li>Duration: ${data.data.duration}</li>
               <li>Rating: ${data.data.rating}</li>
-              <li>Resolution: ${selectedResolutions.join(', ')}</li>
-              <li>Type: ${selectedTypes.join(', ')}</li>
+              <li>Resolution: ${selectedResolutions.map(resolution => `<a href="/label/${resolution}">${resolution}</a>`).join(', ')}</li>
+              <li>Type: ${selectedTypes.map(Type => `<a href="/label/${Type}">${Type}</a>`).join(', ')}</li>
             </ul>
           </div>
         </div>

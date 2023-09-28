@@ -91,13 +91,13 @@ let buttons = [];
               <li>Synonyms: ${data.data.title_synonyms.join(', ')}</li>
               <li>Type: ${data.data.type}</li>
               <li>Episodes: ${data.data.episodes}</li>
-              <li>Status: ${data.data.status}</li>
+              <li>Status: <a href="/label/${data.data.status}">${data.data.status}</a></li>
               <li>Aired: ${data.data.aired.string}</li>
               <li>Season: ${data.data.season}</li>
               <li>Broadcast: ${data.data.broadcast.string}</li>
-              <li>Producers: ${data.data.producers.map(producer => `<a href="/${producer.name}">${producer.name}</a>`).join(', ')}</li>
-              <li>Licensors: ${data.data.licensors.map(licensor => `<a href="/${licensor.name}">${licensor.name}</a>`).join(', ')}</li>
-              <li>Studios: ${data.data.studios.map(studio => `<a href="/${studio.name}">${studio.name}</a>`).join(', ')}</li>
+              <li>Producers: ${data.data.producers.map(producer => `<a href="/label/${producer.name}">${producer.name}</a>`).join(', ')}</li>
+              <li>Licensors: ${data.data.licensors.map(licensor => `<a href="/label/${licensor.name}">${licensor.name}</a>`).join(', ')}</li>
+              <li>Studios: ${data.data.studios.map(studio => `<a href="/label/${studio.name}">${studio.name}</a>`).join(', ')}</li>
               <li>Source: ${data.data.source}</li>
               <li>Genres: ${data.data.genres.map(genre => `<a href="/label/${genre.name}">${genre.name}</a>`).join(', ')}</li>
               <li>Themes: ${data.data.themes.map(theme => theme.name).join(', ')}</li>

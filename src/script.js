@@ -84,29 +84,27 @@ let buttons = [];
           <h3 class="toggle-head">
             Information <span class="bi bi-chevron-down"></span>
           </h3>
-          <div class="toggle-content">
-            <ul style="text-align: left;">
-              <li>English: ${data.data.title_english}</li>
-              <li>Japanese: ${data.data.title_japanese}</li>
-              <li>Synonyms: ${data.data.title_synonyms.join(', ')}</li>
-              <li>Type: ${data.data.type}</li>
-              <li>Episodes: ${data.data.episodes}</li>
-              <li>Status: <a href="/search/label/${data.data.status}">${data.data.status}</a></li>
-              <li>Aired: ${data.data.aired.string}</li>
-              <li>Season: ${data.data.season}</li>
-              <li>Broadcast: ${data.data.broadcast.string}</li>
-              <li>Producers: ${data.data.producers.map(producer => `<a href="/search/label/${producer.name}">${producer.name}</a>`).join(', ')}</li>
-              <li>Licensors: ${data.data.licensors.map(licensor => `<a href="/search/label/${licensor.name}">${licensor.name}</a>`).join(', ')}</li>
-              <li>Studios: ${data.data.studios.map(studio => `<a href="/search/label/${studio.name}">${studio.name}</a>`).join(', ')}</li>
-              <li>Source: ${data.data.source}</li>
-              <li>Genres: ${data.data.genres.map(genre => `<a href="/search/label/${genre.name}">${genre.name}</a>`).join(', ')}</li>
-              <li>Themes: ${data.data.themes.map(theme => `<a href="/search/label/${theme.name}">${theme.name}</a>`).join(', ')}</li>
-              <li>Demographics: ${data.data.demographics.map(demographic => `<a href="/search/label/${demographic.name}">${demographic.name}</a>`).join(', ')}</li>
-              <li>Duration: ${data.data.duration}</li>
-              <li>Rating: ${data.data.rating}</li>
-              <li>Resolution: ${selectedResolutions.map(resolution => `<a href="/search/label/${resolution}">${resolution}</a>`).join(', ')}</li>
-              <li>Type: ${selectedTypes.map(Type => `<a href="/search/label/${Type}">${Type}</a>`).join(', ')}</li>
-            </ul>
+          <div class="toggle-content" style="text-align: left;">
+              <strong>English:</strong> ${data.data.title_english}<br />
+              <strong>Japanese:</strong> ${data.data.title_japanese}<br />
+              <li>Synonyms:</strong> ${data.data.title_synonyms.join(', ')}<br />
+              <strong>Type:</strong> ${data.data.type}<br />
+              <strong>Episodes:</strong> ${data.data.episodes}<br />
+              <strong>Status:</strong> <a href="/search/label/${data.data.status}">${data.data.status}</a><br />
+              <strong>Aired:</strong> ${data.data.aired.string}<br />
+              <strong>Season:</strong> ${data.data.season}<br />
+              <strong>Broadcast:</strong> ${data.data.broadcast.string}<br />
+              <strong>Producers:</strong> ${data.data.producers.map(producer => `<a href="/search/label/${producer.name}">${producer.name}</a>`).join(', ')}<br />
+              <strong>Licensors:</strong> ${data.data.licensors.map(licensor => `<a href="/search/label/${licensor.name}">${licensor.name}</a>`).join(', ')}<br />
+              <strong>Studios:</strong> ${data.data.studios.map(studio => `<a href="/search/label/${studio.name}">${studio.name}</a>`).join(', ')}<br />
+              <strong>Source:</strong> ${data.data.source}<br />
+              <strong>Genres:</strong> ${data.data.genres.map(genre => `<a href="/search/label/${genre.name}">${genre.name}</a>`).join(', ')}<br />
+              <strong>Themes:</strong> ${data.data.themes.map(theme => `<a href="/search/label/${theme.name}">${theme.name}</a>`).join(', ')}<br />
+              <strong>Demographics:</strong> ${data.data.demographics.map(demographic => `<a href="/search/label/${demographic.name}">${demographic.name}</a>`).join(', ')}<br />
+              <strong>Duration:</strong> ${data.data.duration}<br />
+              <strong>Rating:</strong> ${data.data.rating}<br />
+              <strong>Resolution:</strong> ${selectedResolutions.map(resolution => `<a href="/search/label/${resolution}">${resolution}</a>`).join(', ')}<br />
+              <strong>Type:</strong> ${selectedTypes.map(Type => `<a href="/search/label/${Type}">${Type}</a>`).join(', ')}<br />
           </div>
         </div>
 

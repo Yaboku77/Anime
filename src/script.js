@@ -82,7 +82,7 @@ let buttons = [];
 
         <div class="toggle tie-sc-open">
           <h3 class="toggle-head">
-            Information <span class="fa fa-angle-down"></span>
+            Information <span class="bi bi-chevron-down"></span>
           </h3>
           <div class="toggle-content">
             <ul style="text-align: left;">
@@ -119,7 +119,7 @@ let buttons = [];
 
         <div class="toggle tie-sc-open">
           <h3 class="toggle-head">
-            Google Drive <span aria-hidden="true" class="fa fa-angle-down"></span>
+            Google Drive <span aria-hidden="true" class="bi bi-chevron-down"></span>
           </h3>
           <div class="toggle-content" style="text-align: center;">
             ${buttonsHTML}

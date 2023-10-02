@@ -87,10 +87,12 @@ let buttons = [];
           <div class="toggle-content" style="text-align: left;">
               <strong>English:</strong> ${data.data.title_english}<br />
               <strong>Japanese:</strong> ${data.data.title_japanese}<br />
-              <li>Synonyms:</strong> ${data.data.title_synonyms.join(', ')}<br />
+              <strong>Synonyms:</strong> ${data.data.title_synonyms.join(', ')}<br />
               <strong>Type:</strong> ${data.data.type}<br />
               <strong>Episodes:</strong> ${data.data.episodes}<br />
-              <strong>Status:</strong> <a href="/search/label/${data.data.status}">${data.data.status}</a><br />
+              <strong>Status:</strong> <a href="/search/label/${data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}
+">${data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}
+</a><br />
               <strong>Aired:</strong> ${data.data.aired.string}<br />
               <strong>Season:</strong> ${data.data.season}<br />
               <strong>Broadcast:</strong> ${data.data.broadcast.string}<br />

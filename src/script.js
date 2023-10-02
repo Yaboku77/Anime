@@ -31,7 +31,7 @@ let buttons = [];
 
       // Display data in generatedDataBox2
       const generatedDataBox2 = document.getElementById('generatedDataBox2');
-      generatedDataBox2.textContent = `${data.data.type}, ${data.data.status} ${data.data.genres.map(genre => genre.name).join(', ')}, ${data.data.themes.map(theme => theme.name).join(', ')}, ${data.data.demographics.map(demographic => demographic.name).join(', ')},${data.data.producers.map(producer => producer.name).join(', ')},${data.data.licensors.map(licensor => licensor.name).join(', ')},${data.data.studios.map(studio => studio.name).join(', ')},${selectedTypes.join(', ')},${selectedResolutions.join(', ')}`;
+      generatedDataBox2.textContent = `${data.data.type}, ${data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}, ${data.data.genres.map(genre => genre.name).join(', ')}, ${data.data.themes.map(theme => theme.name).join(', ')}, ${data.data.demographics.map(demographic => demographic.name).join(', ')},${data.data.producers.map(producer => producer.name).join(', ')},${data.data.licensors.map(licensor => licensor.name).join(', ')},${data.data.studios.map(studio => studio.name).join(', ')},${selectedTypes.join(', ')},${selectedResolutions.join(', ')}`;
 
       // Generate the full HTML code and display it in the original generatedCodeBox
       const code = generateHTMLCode(data, selectedResolutions, selectedTypes);
@@ -90,9 +90,7 @@ let buttons = [];
               <strong>Synonyms:</strong> ${data.data.title_synonyms.join(', ')}<br />
               <strong>Type:</strong> ${data.data.type}<br />
               <strong>Episodes:</strong> ${data.data.episodes}<br />
-              <strong>Status:</strong> <a href="/search/label/${data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}
-">${data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}
-</a><br />
+              <strong>Status:</strong> <a href="/search/label/${data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}">${data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}</a><br />
               <strong>Aired:</strong> ${data.data.aired.string}<br />
               <strong>Season:</strong> ${data.data.season}<br />
               <strong>Broadcast:</strong> ${data.data.broadcast.string}<br />

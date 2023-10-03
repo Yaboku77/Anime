@@ -86,7 +86,7 @@ let buttons = [];
     // Access only the first Japanese voice actor
     const firstJapaneseVA = japaneseVAs[0];
     return `
-      <strong><a href="${character.character.url}" target="_blank" rel="noopener nofollow">${character.character.name}</a></strong> – <a href="${firstJapaneseVA.person.url}" target="_blank" rel="noopener nofollow">${firstJapaneseVA.person.name}</a><br />
+      <strong><a href="${character.character.url}">${character.character.name}</a></strong> – <a href="${firstJapaneseVA.person.url}">${firstJapaneseVA.person.name}</a><br />
     `;
   })
   .join('');
@@ -97,7 +97,7 @@ let buttons = [];
         .map(staffMember => {
           const position = staffMember.positions[0];
           return `
-            <strong><a href="${staffMember.person.url}" target="_blank" rel="noopener nofollow">${staffMember.person.name}</a></strong> – ${position}<br />
+            <strong><a href="${staffMember.person.url}">${staffMember.person.name}</a></strong> – ${position}<br />
           `;
         })
         .join('');

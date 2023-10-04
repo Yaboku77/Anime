@@ -250,7 +250,7 @@ let buttons = [];
   <div class="box download">
           <div class="box-inner-block">
             <span class="bi bi-info-circle-fill"></span>To access the private drive just open Google Group and join the Google Group, ignore the rest.<br />
-            After that, Enjoy&#8230; <a href="https://groups.google.com/g/bondgreninja" target="_blank" rel="noopener">Here</a>
+            After that, Enjoy&#8230; <a href="https://groups.google.com/g/animekaizoku" target="_blank" rel="noopener">Click Here</a>
           </div>
         </div>
         

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Data Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #anime-info {
+            margin: 20px;
+        }
+        #anime-poster {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Anime Data Generator</h1>
+    <input type="text" id="search-input" placeholder="Enter Anime Title">
+    <button id="search-btn">Search Anime</button>
+    <div id="anime-info"></div>
+    <div id="anime-poster"></div>
+
+    <script>
+        document.getElementById("search-btn").addEventListener("click", () => {
+            const searchQuery = document.getElementById("search-input").value;
+            
+            fetch("https://graphql.anilist.co", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+                body: JSON.stringify({
+                    query: `
+                        query ($search: String) {
+                            Media(search: $search, type: ANIME, sort: POPULARITY_DESC) {
+                                id
+                                title {
+                                    romaji
+                                    english
+                                    native
+                                }
+                                episodes
+                                status
+                                genres
+                                description(asHtml: false)
+                                coverImage {
+                                    medium
+                                }
+                            }
+                        }
+                    `,
+                    variables: {
+                        search: searchQuery
+                    }
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const anime = data.data.Media;
+                if (anime) {
+                    const animeInfo = `
+                        <h2>${anime.title.romaji}</h2>
+                        <p><strong>Anime ID:</strong> ${anime.id}</p>
+                        <p><strong>English Title:</strong> ${anime.title.english}</p>
+                        <p><strong>Native Title:</strong> ${anime.title.native}</p>
+                        <p><strong>Episodes:</strong> ${anime.episodes}</p>
+                        <p><strong>Status:</strong> ${anime.status}</p>
+                        <p><strong>Genres:</strong> ${anime.genres.join(", ")}</p>
+                        <p><strong>Description:</strong> ${anime.description}</p>
+                    `;
+                    document.getElementById("anime-info").innerHTML = animeInfo;
+                    
+                    const animePoster = `<img src="https://img.anili.st/media/${anime.id}" alt="Anime Poster" width="100%" height="100%">`;
+                    document.getElementById("anime-poster").innerHTML = animePoster;
+                } else {
+                    document.getElementById("anime-info").innerHTML = "<p>No anime found with that title.</p>";
+                    document.getElementById("anime-poster").innerHTML = "";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+        });
+    </script>
+</body>
+  </html>
+  

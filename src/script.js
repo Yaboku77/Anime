@@ -209,7 +209,7 @@ let buttons = [];
       Characters &amp; Voice Actors
       <span class="bi bi-chevron-down rotate" aria-hidden="true"></span>
     </h3>
-    <div class="toggle-content"">
+    <div class="toggle-content">
       ${japaneseVoiceActors}
       <a style="float: right;" href="${Data.data.url}/characters" target="_blank" rel="noopener nofollow">More &gt;&gt;</a><br>
     </div>
@@ -227,7 +227,7 @@ let buttons = [];
   <div class="toggle tie-sc-close">
       <h3 class="toggle-head">Themes songs <span class="bi bi-chevron-down rotate" aria-hidden="true"></span></h3>
       <div class="toggle-content">
-        ${formattedOpenings}<br>
+        ${formattedOpenings}<br><br />
         ${formattedEndings}<br>
       </div>
     </div>

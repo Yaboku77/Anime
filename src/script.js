@@ -35,7 +35,34 @@ let buttons = [];
           }
         });
     }
+    
+    
+    function getThemesData(animeId) {
+  let themesUrl = `https://api.jikan.moe/v4/anime/${animeId}/themes`;
+  return fetch(themesUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to fetch themes data.');
+      }
+    });
+}
 
+
+    function getEpisodesData(animeId) {
+  let episodesUrl = `https://api.jikan.moe/v4/anime/${animeId}/episodes`;
+  return fetch(episodesUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to fetch episodes data.');
+      }
+    });
+}
+    
+    
     function generateCode() {
       const animeId = document.getElementById('animeId').value;
       let selectedResolutions, selectedTypes; // Declare the variables here
@@ -59,11 +86,13 @@ let buttons = [];
           // Fetch character and staff data
           return Promise.all([
             getCharacterData(animeId),
-            getStaffData(animeId)
+            getStaffData(animeId),
+            getThemesData(animeId),
+            getEpisodesData(animeId)
           ])
-          .then(([characterData, staffData]) => {
+          .then(([characterData, staffData, themesData, episodesData]) => {
             // Generate the full HTML code and display it in the original generatedCodeBox
-            const code = generateHTMLCode(Data, characterData, staffData, selectedResolutions, selectedTypes, modifiedScore);
+            const code = generateHTMLCode(Data, characterData, staffData, themesData, episodesData, selectedResolutions, selectedTypes, modifiedScore);
             document.getElementById('generatedCode').textContent = code;
           });
         })
@@ -72,11 +101,19 @@ let buttons = [];
         });
     }
 
-    function generateHTMLCode(Data, characterData, staffData, selectedResolutions, selectedTypes, modifiedScore) {
+    function generateHTMLCode(Data, characterData, staffData, themesData, episodesData, selectedResolutions, selectedTypes, modifiedScore) {
       let buttonsHTML = '';
       for (const button of buttons) {
         buttonsHTML += `<a class="shortc-button small blue" href="${button.url}">${button.title}</a>`;
       }
+
+       const themes = themesData.data;
+       const episodes = episodesData.data;
+       
+       
+       // Format opening and ending themes data
+  const formattedOpenings = themes.openings.map((theme, index) => `<strong>OP${index + 1}</strong>: ${theme}`).join('<br>');
+  const formattedEndings = themes.endings.map((theme, index) => `<strong>ED${index + 1}</strong>: ${theme}`).join('<br>');
 
       const japaneseVoiceActors = characterData.data
   .filter(character => character.voice_actors.some(va => va.language === "Japanese"))
@@ -86,7 +123,7 @@ let buttons = [];
     // Access only the first Japanese voice actor
     const firstJapaneseVA = japaneseVAs[0];
     return `
-      <strong><a href="${character.character.url}">${character.character.name}</a></strong> – <a href="${firstJapaneseVA.person.url}">${firstJapaneseVA.person.name}</a><br />
+      <strong><a href="${character.character.url}" target="_blank" rel="noopener nofollow">${character.character.name}</a></strong> – <a href="${firstJapaneseVA.person.url}" target="_blank" rel="noopener nofollow">${firstJapaneseVA.person.name}</a><br />
     `;
   })
   .join('');
@@ -97,10 +134,17 @@ let buttons = [];
         .map(staffMember => {
           const position = staffMember.positions[0];
           return `
-            <strong><a href="${staffMember.person.url}">${staffMember.person.name}</a></strong> – ${position}<br />
+            <strong><a href="${staffMember.person.url}" target="_blank" rel="noopener nofollow">${staffMember.person.name}</a></strong> – ${position}<br />
           `;
         })
         .join('');
+        
+        // Format episode list
+  const formattedEpisodes = episodes.map((episode) => {
+    const episodeNumber = episode.mal_id;
+    const episodeTitle = episode.title;
+    return `<strong>${episodeNumber}</strong>: ${episodeTitle}<br>`;
+  }).join('');
 
       const code = `
    <div>
@@ -180,6 +224,29 @@ let buttons = [];
     </div>
   </div>
   
+  <div class="toggle tie-sc-close">
+      <h3 class="toggle-head">Themes songs <span class="bi bi-chevron-down rotate" aria-hidden="true"></span></h3>
+      <div class="toggle-content">
+        ${formattedOpenings}<br>
+        ${formattedEndings}<br>
+      </div>
+    </div>
+    
+  <div class="toggle tie-sc-close">
+      <h3 class="toggle-head">Episode List <span class="bi bi-chevron-down rotate" aria-hidden="true"></span></h3>
+      <div class="toggle-content">
+        ${formattedEpisodes}
+      </div>
+    </div>
+    
+    <div class="toggle tie-sc-close">
+      <h3 class="toggle-head">Trailer <span class="bi bi-chevron-down rotate" aria-hidden="true"></span></h3>
+      <div class="toggle-content"> 
+      <iframe width="420" height="345" src="https://www.youtube.com/embed/${Data.data.trailer.youtube_id}">
+</iframe>
+      </div>
+    </div>
+  
   <div class="box download">
           <div class="box-inner-block">
             <span class="fa tie-shortcode-boxicon"></span>To access the private drive just open Google Group and join the Google Group, ignore the rest.<br />
@@ -223,4 +290,4 @@ let buttons = [];
       document.execCommand('copy');
       window.getSelection().removeAllRanges();
       alert('Code copied to clipboard!');
-                                                                                                                                                                                                                                                                                                                                                                                                                          }
+    }

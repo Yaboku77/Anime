@@ -81,7 +81,7 @@ let buttons = [];
           generatedDataBox1.textContent = Data.data.title;
 
           const generatedDataBox2 = document.getElementById('generatedDataBox2');
-          generatedDataBox2.textContent = `${Data.data.type}, ${Data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}, ${Data.data.genres.map(genre => genre.name).join(', ')}, ${Data.data.themes.map(theme => theme.name).join(', ')}, ${Data.data.demographics.map(demographic => demographic.name).join(', ')}, ${Data.data.producers.map(producer => producer.name).join(', ')}, ${Data.data.licensors.map(licensor => licensor.name).join(', ')}, ${Data.data.studios.map(studio => studio.name).join(', ')}, ${selectedTypes.join(', ')}, ${selectedResolutions.join(', ')}`;
+          generatedDataBox2.textContent = `${Data.data.type}, ${Data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}, ${Data.data.genres.map(genre => genre.name).join(', ')}, ${Data.data.themes.map(theme => theme.name).join(', ')}, ${Data.data.demographics.map(demographic => demographic.name).join(', ')}, ${Data.data.licensors.map(licensor => licensor.name).join(', ')}, ${Data.data.studios.map(studio => studio.name).join(', ')}, ${selectedTypes.join(', ')}, ${selectedResolutions.join(', ')}`;
 
           // Fetch character and staff data
           return Promise.all([
@@ -190,7 +190,7 @@ let buttons = [];
               <strong>Aired:</strong> ${Data.data.aired.string}<br />
               <strong>Season:</strong> ${Data.data.season}<br />
               <strong>Broadcast:</strong> ${Data.data.broadcast.string}<br />
-              <strong>Producers:</strong> ${Data.data.producers.map(producer => `<a href="/search/label/${producer.name}">${producer.name}</a>`).join(', ')}<br />
+              <strong>Producers:</strong> ${Data.data.producers.join(', ')}<br />
               <strong>Licensors:</strong> ${Data.data.licensors.map(licensor => `<a href="/search/label/${licensor.name}">${licensor.name}</a>`).join(', ')}<br />
               <strong>Studios:</strong> ${Data.data.studios.map(studio => `<a href="/search/label/${studio.name}">${studio.name}</a>`).join(', ')}<br />
               <strong>Source:</strong> ${Data.data.source}<br />

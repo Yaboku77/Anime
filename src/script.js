@@ -190,7 +190,7 @@ let buttons = [];
               <strong>Aired:</strong> ${Data.data.aired.string}<br />
               <strong>Season:</strong> ${Data.data.season}<br />
               <strong>Broadcast:</strong> ${Data.data.broadcast.string}<br />
-              <strong>Producers:</strong> ${data.data.producers.map(producer => producer.name).join(', ')}<br />
+              <strong>Producers:</strong> ${Data.data.producers.map(producer => producer.name).join(', ')}<br />
               <strong>Licensors:</strong> ${Data.data.licensors.map(licensor => `<a href="/search/label/${licensor.name}">${licensor.name}</a>`).join(', ')}<br />
               <strong>Studios:</strong> ${Data.data.studios.map(studio => `<a href="/search/label/${studio.name}">${studio.name}</a>`).join(', ')}<br />
               <strong>Source:</strong> ${Data.data.source}<br />

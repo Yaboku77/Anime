@@ -165,7 +165,7 @@ generatedDataBox2.style.display = 'block';
               <strong>Aired:</strong> ${Data.data.aired.string}<br />
               <strong>Season:</strong> ${Data.data.season}<br />
               <strong>Broadcast:</strong> ${Data.data.broadcast.string}<br />
-              <strong>Producers:</strong> ${Data.data.producers.map(producer => producer.name).join(', ')}<br />
+              <strong>Producers:</strong> ${Data.data.producers.map(producer => `<a href="/producer/${producer.name}">${producer.name}</a>`).join(', ')}<br />
               <strong>Licensors:</strong> ${Data.data.licensors.map(licensor => `<a href="/licensor/${licensor.name}">${licensor.name}</a>`).join(', ')}<br />
               <strong>Studios:</strong> ${Data.data.studios.map(studio => `<a href="/studio/${studio.name}">${studio.name}</a>`).join(', ')}<br />
               <strong>Source:</strong> ${Data.data.source}<br />

@@ -101,7 +101,7 @@ generatedDataBox2.style.display = 'block';
           .then(([characterData, staffData, themesData, episodesData]) => {
             // Generate the full HTML code and display it in the original generatedCodeBox
             const code = generateHTMLCode(Data, characterData, staffData, themesData, episodesData, selectedResolutions, selectedTypes);
- ument.getElementById('generatedCode').textContent = code;
+ document.getElementById('generatedCode').textContent = code;
           });
         })
         .catch(error => {

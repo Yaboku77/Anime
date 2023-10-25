@@ -100,8 +100,8 @@ generatedDataBox2.style.display = 'block';
           ])
           .then(([characterData, staffData, themesData, episodesData]) => {
             // Generate the full HTML code and display it in the original generatedCodeBox
-            const code = generateHTMLCode(Data, characterData, staffData, themesData, episodesData, selectedResolutions, selectedTypes, modifiedScore);
-            document.getElementById('generatedCode').textContent = code;
+            const code = generateHTMLCode(Data, characterData, staffData, themesData, episodesData, selectedResolutions, selectedTypes);
+ ument.getElementById('generatedCode').textContent = code;
           });
         })
         .catch(error => {
@@ -109,7 +109,7 @@ generatedDataBox2.style.display = 'block';
         });
     }
 
-    function generateHTMLCode(Data, characterData, staffData, themesData, episodesData, selectedResolutions, selectedTypes, modifiedScore) {
+    function generateHTMLCode(Data, characterData, staffData, themesData, episodesData, selectedResolutions, selectedTypes) {
       let buttonsHTML = '';
       for (const button of buttons) {
         buttonsHTML += `<a class="shortc-button small blue" href="${button.url}">${button.title}</a>`;

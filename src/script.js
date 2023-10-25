@@ -161,21 +161,21 @@ generatedDataBox2.style.display = 'block';
               <strong>Synonyms:</strong> ${Data.data.title_synonyms.join(', ')}<br />
               <strong>Type:</strong> ${Data.data.type}<br />
               <strong>Episodes:</strong> ${Data.data.episodes}<br />
-              <strong>Status:</strong> <a href="/search/label/${Data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}">${Data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}</a><br />
+              <strong>Status:</strong> ${Data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}<br />
               <strong>Aired:</strong> ${Data.data.aired.string}<br />
               <strong>Season:</strong> ${Data.data.season}<br />
               <strong>Broadcast:</strong> ${Data.data.broadcast.string}<br />
               <strong>Producers:</strong> ${Data.data.producers.map(producer => producer.name).join(', ')}<br />
-              <strong>Licensors:</strong> ${Data.data.licensors.map(licensor => `<a href="/search/label/${licensor.name}">${licensor.name}</a>`).join(', ')}<br />
-              <strong>Studios:</strong> ${Data.data.studios.map(studio => `<a href="/search/label/${studio.name}">${studio.name}</a>`).join(', ')}<br />
+              <strong>Licensors:</strong> ${Data.data.licensors.map(licensor => `<a href="/licensor/${licensor.name}">${licensor.name}</a>`).join(', ')}<br />
+              <strong>Studios:</strong> ${Data.data.studios.map(studio => `<a href="/studio/${studio.name}">${studio.name}</a>`).join(', ')}<br />
               <strong>Source:</strong> ${Data.data.source}<br />
-              <strong>Genres:</strong> ${Data.data.genres.map(genre => `<a href="/search/label/${genre.name}">${genre.name}</a>`).join(', ')}<br />
-              <strong>Themes:</strong> ${Data.data.themes.map(theme => `<a href="/search/label/${theme.name}">${theme.name}</a>`).join(', ')}<br />
+              <strong>Genres:</strong> ${Data.data.genres.map(genre => `<a href="/genre/${genre.name}">${genre.name}</a>`).join(', ')}<br />
+              <strong>Themes:</strong> ${Data.data.themes.map(theme => `<a href="/theme/${theme.name}">${theme.name}</a>`).join(', ')}<br />
               <strong>Demographics:</strong> ${Data.data.demographics.map(demographic => `<a href="/search/label/${demographic.name}">${demographic.name}</a>`).join(', ')}<br />
               <strong>Duration:</strong> ${Data.data.duration}<br />
               <strong>Rating:</strong> ${Data.data.rating}<br />
-              <strong>Resolution:</strong> ${selectedResolutions.map(resolution => `<a href="/search/label/${resolution}">${resolution}</a>`).join(', ')}<br />
-              <strong>Type:</strong> ${selectedTypes.map(Type => `<a href="/search/label/${Type}">${Type}</a>`).join(', ')}<br />
+              <strong>Resolution:</strong> ${selectedResolutions.map(resolution => `<a href="/resolution/${resolution}">${resolution}</a>`).join(', ')}<br />
+              <strong>Type:</strong> ${selectedTypes.map(Type => `<a href="/type/${Type}">${Type}</a>`).join(', ')}<br />
           [/toggle]
         
    [toggle title="Characters &amp; Voice Actors" state="close"]

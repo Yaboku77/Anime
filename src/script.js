@@ -176,11 +176,7 @@ let buttons = [];
           </div>
         </div>
 
-        <div class="toggle tie-sc-open">
-          <h3 class="toggle-head">
-            Information <span class="bi bi-chevron-down"></span>
-          </h3>
-          <div class="toggle-content" style="text-align: left;">
+        [toggle title="Information" state="open"]
               <strong>English:</strong> ${Data.data.title_english}<br />
               <strong>Japanese:</strong> ${Data.data.title_japanese}<br />
               <strong>Synonyms:</strong> ${Data.data.title_synonyms.join(', ')}<br />
@@ -201,68 +197,38 @@ let buttons = [];
               <strong>Rating:</strong> ${Data.data.rating}<br />
               <strong>Resolution:</strong> ${selectedResolutions.map(resolution => `<a href="/search/label/${resolution}">${resolution}</a>`).join(', ')}<br />
               <strong>Type:</strong> ${selectedTypes.map(Type => `<a href="/search/label/${Type}">${Type}</a>`).join(', ')}<br />
-          </div>
-        </div>
+          [/toggle]
         
-   <div class="toggle tie-sc-close">
-    <h3 class="toggle-head">
-      Characters &amp; Voice Actors
-      <span class="bi bi-chevron-down rotate" aria-hidden="true"></span>
-    </h3>
-    <div class="toggle-content">
+   [toggle title="Characters &amp; Voice Actors" state="close"]
       ${japaneseVoiceActors}
       <a style="float: right;" href="${Data.data.url}/characters" target="_blank" rel="noopener nofollow">More &gt;&gt;</a><br>
-    </div>
-  </div>
-  <div class="toggle tie-sc-close">
-    <h3 class="toggle-head">
-      Staff <span class="bi bi-chevron-down rotate" aria-hidden="true"></span>
-    </h3>
-    <div class="toggle-content">
+   [/toggle]
+   [toggle title="Staff" state="close"]
       ${staff}
       <a style="float: right;" href="${Data.data.url}/characters#staff" target="_blank" rel="noopener nofollow">More &gt;&gt;</a><br>
-    </div>
-  </div>
+   [/toggle]
   
-  <div class="toggle tie-sc-close">
-      <h3 class="toggle-head">Themes songs <span class="bi bi-chevron-down rotate" aria-hidden="true"></span></h3>
-      <div class="toggle-content">
+   [toggle title="Theme Songs" state="close"]
         ${formattedOpenings}<br><br />
         ${formattedEndings}<br>
-      </div>
-    </div>
+   [/toggle]
     
-  <div class="toggle tie-sc-close">
-      <h3 class="toggle-head">Episode List <span class="bi bi-chevron-down rotate" aria-hidden="true"></span></h3>
-      <div class="toggle-content">
+   [toggle title="Episode List" state="close"]
         ${formattedEpisodes}
-      </div>
-    </div>
+   [/toggle]
     
-    <div class="toggle tie-sc-close">
-      <h3 class="toggle-head">Trailer <span class="bi bi-chevron-down rotate" aria-hidden="true"></span></h3>
-      <div class="toggle-content"> 
-      <iframe width="420" height="345" src="https://www.youtube.com/embed/${Data.data.trailer.youtube_id}">
-</iframe>
-      </div>
-    </div>
+   [toggle title="Trailer" state="close"]
+      <iframe width="420" height="345" src="https://www.youtube.com/embed/${Data.data.trailer.youtube_id}"></iframe>
+   [/toggle]
   
-  <div class="box download">
-          <div class="box-inner-block">
-            <span class="bi bi-info-circle-fill"></span>To access the private drive just open Google Group and join the Google Group, ignore the rest.<br />
+   [box type="info" align="alignright" width=""]To access the private drive just open Google Group and join the Google Group, ignore the rest.<br />
             After that, Enjoy&#8230; <a href="https://groups.google.com/g/animekaizoku" target="_blank" rel="noopener">Click Here</a>
-          </div>
-        </div>
+   [/box]
         
   
-  <div class="toggle tie-sc-open">
-          <h3 class="toggle-head">
-            Google Drive <span aria-hidden="true" class="bi bi-chevron-down"></span>
-          </h3>
-          <div class="toggle-content" style="text-align: center;">
+   [toggle title="Google Drive" state="open"]
             ${buttonsHTML}
-          </div>
-        </div>
+   [/toggle]
         `;
 
       return code;

@@ -73,12 +73,16 @@ let buttons = [];
           selectedResolutions = Array.from(document.getElementById('resolutionSelect').selectedOptions).map(option => option.value);
           selectedTypes = Array.from(document.getElementById('typeSelect').selectedOptions).map(option => option.value);
           
-          // Modify the score to be on a 0 to 100 scale
-          const modifiedScore = Data.data.score * 10;
-
+          
           // Display data in generatedDataBox1 and generatedDataBox2
           const generatedDataBox1 = document.getElementById('generatedDataBox1');
           generatedDataBox1.textContent = Data.data.title;
+
+          const generatedDataBox3 = document.getElementById('generatedDataBox3');
+          generatedDataBox3.textContent = Data.data.synopsis;
+          
+          const generatedDataBox4 = document.getElementById('generatedDataBox4');
+          generatedDataBox4.textContent = Data.data.score;
 
           const generatedDataBox2 = document.getElementById('generatedDataBox2');
           generatedDataBox2.textContent = `${Data.data.type}, ${Data.data.status.replace(/Currently Airing/g, "Airing").replace(/Finished Airing/g, "Completed")}, ${Data.data.genres.map(genre => genre.name).join(', ')}, ${Data.data.themes.map(theme => theme.name).join(', ')}, ${Data.data.demographics.map(demographic => demographic.name).join(', ')}, ${Data.data.licensors.map(licensor => licensor.name).join(', ')}, ${Data.data.studios.map(studio => studio.name).join(', ')}, ${selectedTypes.join(', ')}, ${selectedResolutions.join(', ')}`;
@@ -147,36 +151,7 @@ let buttons = [];
   }).join('');
 
       const code = `
-   <div>
-          <a><img border="0" data-original-height="450" data-original-width="800" height="360" src="" width="640" /></a>
-        </div>
-
-        <div class="review_wrap">
-          <div class="review-box review-bottom review-percentage" id="review-box">
-            <h2 class="review-box-header the-global-title">${Data.data.title}</h2>
-            
-            <div class="review-item">
-        <span
-          ><h5>MyAnimeList - ${Data.data.score}</h5>
-          <span style="width:${modifiedScore}%" data-width="${modifiedScore}"></span
-        ></span>
-            </div>
-            
-            <div class="review-summary">
-              <div class="review-final-score">
-                <h3>${Data.data.score}</h3>
-
-                <h4>Average Rating</h4>
-              </div>
-
-              <div class="review-short-summary">
-                <p>${Data.data.synopsis}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        [toggle title="Information" state="open"]
+   [toggle title="Information" state="open"]
               <strong>English:</strong> ${Data.data.title_english}<br />
               <strong>Japanese:</strong> ${Data.data.title_japanese}<br />
               <strong>Synonyms:</strong> ${Data.data.title_synonyms.join(', ')}<br />

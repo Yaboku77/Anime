@@ -87,6 +87,10 @@ let buttons = [];
           const generatedDataBox2 = document.getElementById('generatedDataBox2');
           generatedDataBox2.innerHTML = `<strong>Genres: </strong>${Data.data.genres.map(genre => genre.name).join(', ')},<br/> <strong>Themes: </strong>${Data.data.themes.map(theme => theme.name).join(', ')},<br/> <strong>Demography</strong>${Data.data.demographics.map(demographic => demographic.name).join(', ')},<br/> <strong>Licensors</strong>${Data.data.licensors.map(licensor => licensor.name).join(', ')},<br/> <strong>Studios</strong>${Data.data.studios.map(studio => studio.name).join(', ')}`;
 
+generatedDataBox2.style.display = 'block';
+            
+
+            
           // Fetch character and staff data
           return Promise.all([
             getCharacterData(animeId),

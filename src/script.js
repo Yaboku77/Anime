@@ -201,7 +201,7 @@ generatedDataBox2.style.display = 'block';
    [/toggle]
   
    [box type="info" align="alignright" width=""]To access the private drive just open Google Group and join the Google Group, ignore the rest.<br />
-            After that, Enjoy&#8230; <a href="https://groups.google.com/g/animekaizoku" target="_blank" rel="noopener">Click Here</a>
+            After that, Enjoy&#8230; <a href="https://bit.ly/akgroups" target="_blank" rel="noopener">Click Here</a>
    [/box]
         
   

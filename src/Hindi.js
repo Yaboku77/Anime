@@ -155,6 +155,25 @@ generatedDataBox2.style.display = 'block';
   }).join('');
 
       const code = `
+
+   <div class="review_wrap">
+          <div class="review-box review-bottom review-percentage" id="review-box">
+            <h2 class="review-box-header the-global-title">${Data.data.title}</h2>
+
+            <div class="review-summary">
+              <div class="review-final-score">
+                <h3>${Data.data.score}</h3>
+
+                <h4>Average Rating</h4>
+              </div>
+
+              <div class="review-short-summary">
+                <p>${Data.data.synopsis}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
    [toggle title="Information" state="open"]
               <strong>English:</strong> ${Data.data.title_english}<br />
               <strong>Japanese:</strong> ${Data.data.title_japanese}<br />

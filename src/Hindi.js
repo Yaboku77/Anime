@@ -184,17 +184,17 @@ generatedDataBox2.style.display = 'block';
               <strong>Aired:</strong> ${Data.data.aired.string}<br />
               <strong>Season:</strong> ${Data.data.season}<br />
               <strong>Broadcast:</strong> ${Data.data.broadcast.string}<br />
-              <strong>Producers:</strong> ${Data.data.producers.map(producer => `<a href="/producer/${producer.name}">${producer.name}</a>`).join(', ')}<br />
-              <strong>Licensors:</strong> ${Data.data.licensors.map(licensor => `<a href="/licensor/${licensor.name}">${licensor.name}</a>`).join(', ')}<br />
-              <strong>Studios:</strong> ${Data.data.studios.map(studio => `<a href="/studio/${studio.name}">${studio.name}</a>`).join(', ')}<br />
+              <strong>Producers:</strong> ${data.data.producers.map(producer => producer.name).join(', ')}<br />
+              <strong>Licensors:</strong> ${data.data.licensors.map(licensor => licensor.name).join(', ')}<br />
+              <strong>Studios:</strong> ${data.data.studios.map(studio => studio.name).join(', ')}<br />
               <strong>Source:</strong> ${Data.data.source}<br />
-              <strong>Genres:</strong> ${Data.data.genres.map(genre => `<a href="/genre/${genre.name}">${genre.name}</a>`).join(', ')}<br />
-              <strong>Themes:</strong> ${Data.data.themes.map(theme => `<a href="/theme/${theme.name}">${theme.name}</a>`).join(', ')}<br />
-              <strong>Demographics:</strong> ${Data.data.demographics.map(demographic => `<a href="/search/label/${demographic.name}">${demographic.name}</a>`).join(', ')}<br />
+              <strong>Genres:</strong> ${data.data.generes.map(genere => genere.name).join(', ')}<br />
+              <strong>Themes:</strong> ${data.data.themes.map(theme => theme.name).join(', ')}<br />
+              <strong>Demographics:</strong> ${data.data.demographics.map(demographic => demographic.name).join(', ')}<br />
               <strong>Duration:</strong> ${Data.data.duration}<br />
               <strong>Rating:</strong> ${Data.data.rating}<br />
-              <strong>Resolution:</strong> ${selectedResolutions.map(resolution => `<a href="/resolution/${resolution}">${resolution}</a>`).join(', ')}<br />
-              <strong>Type:</strong> ${selectedTypes.map(Type => `<a href="/type/${Type}">${Type}</a>`).join(', ')}<br />
+              <strong>Resolution:</strong> ${selectedResolutions.map(resolution => ${resolution}).join(', ')}<br />
+              <strong>Type:</strong> ${selectedTypes.map(Type => ${Type}).join(', ')}<br />
           [/toggle]
         
    [toggle title="Characters &amp; Voice Actors" state="close"]

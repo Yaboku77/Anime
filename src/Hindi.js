@@ -76,7 +76,7 @@ let buttons = [];
           
           // Display data in generatedDataBox1 and generatedDataBox2
           const generatedDataBox1 = document.getElementById('generatedDataBox1');
-          generatedDataBox1.textContent = Data.data.title;
+          generatedDataBox1.textContent = Data.data.title_english;
 
           const generatedDataBox3 = document.getElementById('generatedDataBox3');
           generatedDataBox3.textContent = Data.data.synopsis;

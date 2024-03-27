@@ -193,8 +193,8 @@ generatedDataBox2.style.display = 'block';
               <strong>Demographics:</strong> ${data.data.demographics.map(demographic => demographic.name).join(', ')}<br />
               <strong>Duration:</strong> ${Data.data.duration}<br />
               <strong>Rating:</strong> ${Data.data.rating}<br />
-              <strong>Resolution:</strong> ${selectedResolutions.map(resolution => ${resolution}).join(', ')}<br />
-              <strong>Type:</strong> ${selectedTypes.map(Type => ${Type}).join(', ')}<br />
+              <strong>Resolution:</strong> ${selectedResolutions.map(resolution => resolution).join(', ')}<br />
+              <strong>Type:</strong> ${selectedTypes.map(Type => Type).join(', ')}<br />
           [/toggle]
         
    [toggle title="Characters &amp; Voice Actors" state="close"]

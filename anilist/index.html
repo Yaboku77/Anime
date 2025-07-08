@@ -148,6 +148,7 @@
                 searchBtnText.classList.remove('hidden');
 
                 // --- GraphQL Query ---
+                // This query fetches all the necessary fields.
                 const query = `
                     query ($search: String) {
                         Media(search: $search, type: ANIME, sort: POPULARITY_DESC) {
@@ -193,36 +194,36 @@
 
             // --- UI Display Functions ---
             const displayAnimeInfo = (anime) => {
-                const description = anime.description ? anime.description.replace(/<br\s*\/?>/gi, '\n').substring(0, 350) + '...' : 'No synopsis available.';
+                // Sanitize description for display
+                const description = anime.description ? anime.description.replace(/<br\s*\/?>/gi, '\n') : 'No synopsis available.';
 
+                // **MODIFIED PART**: This section now includes all the requested data fields.
                 animeInfoEl.innerHTML = `
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">${anime.title.romaji}</h2>
-                    <p class="text-lg text-gray-400 mb-6">${anime.title.english || ''}</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">${anime.title.romaji}</h2>
                     
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        ${anime.genres.map(genre => `<span class="bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1 rounded-full">${genre}</span>`).join("")}
+                    <div class="space-y-2 text-md text-gray-300 mb-4">
+                        <p><strong>Anime ID:</strong> ${anime.id || 'N/A'}</p>
+                        <p><strong>English Title:</strong> ${anime.title.english || 'N/A'}</p>
+                        <p><strong>Native Title:</strong> ${anime.title.native || 'N/A'}</p>
+                        <p><strong>Episodes:</strong> ${anime.episodes || 'N/A'}</p>
+                        <p><strong>Status:</strong> ${anime.status ? anime.status.replace(/_/g, ' ') : 'N/A'}</p>
+                        <p><strong>Genres:</strong> ${anime.genres ? anime.genres.join(", ") : 'N/A'}</p>
                     </div>
-                    
-                    <p class="text-gray-300 mb-6 text-md leading-relaxed">${description}</p>
-                    
-                    <div class="grid grid-cols-2 gap-4 text-center border-t border-gray-800 pt-4">
-                       <div>
-                           <p class="font-bold text-gray-400 text-sm uppercase tracking-wider">Status</p>
-                           <p class="text-lg text-white">${anime.status.replace(/_/g, ' ')}</p>
-                       </div>
-                       <div>
-                           <p class="font-bold text-gray-400 text-sm uppercase tracking-wider">Episodes</p>
-                           <p class="text-lg text-white">${anime.episodes || 'N/A'}</p>
-                       </div>
+
+                    <div class="border-t border-gray-800 pt-4 mt-4">
+                        <h3 class="font-bold text-xl text-white mb-2">Description</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto">${description}</p>
                     </div>
                 `;
                 
-                animePosterEl.innerHTML = `<img src="${anime.coverImage.extraLarge}" alt="Poster for ${anime.title.romaji}" class="w-full h-auto object-cover rounded-lg shadow-lg">`;
+                // **MODIFIED PART**: Using the img.anili.st URL structure as requested.
+                animePosterEl.innerHTML = `<img src="https://img.anili.st/media/${anime.id}" alt="Poster for ${anime.title.romaji}" class="w-full h-auto object-cover rounded-lg shadow-lg">`;
                 
-                // Update background
+                // Update background (keeping this feature as you liked the UI)
                 if (anime.bannerImage) {
                     backgroundContainer.style.backgroundImage = `url('${anime.bannerImage}')`;
                 } else {
+                    // Fallback to cover image if no banner is available
                     backgroundContainer.style.backgroundImage = `url('${anime.coverImage.extraLarge}')`;
                 }
                 

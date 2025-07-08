@@ -8,29 +8,24 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Fredoka One for a playful look -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #a7f3d0; /* A soft, friendly green */
-        }
-        .clock-container {
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Gray-100 */
         }
         .clock {
-            /* MODIFIED: Removed fixed width and height, added responsive properties */
-            width: 100%; /* Take up full width of its container */
-            aspect-ratio: 1 / 1; /* This is the key: forces height to equal width */
-            
-            border: 12px solid #fBBF24; /* Amber-400 */
-            background-color: #fef3c7; /* Amber-100 */
+            width: 100%; 
+            aspect-ratio: 1 / 1;
+            border: 8px solid #374151; /* Gray-700 */
+            background-color: #ffffff;
             border-radius: 50%;
             position: relative;
-            box-shadow: 0 0 0 10px #f59e0b, 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
         .clock-face {
             width: 100%;
@@ -42,32 +37,31 @@
             bottom: 50%;
             left: 50%;
             transform-origin: bottom;
-            border-radius: 10px;
+            background-color: #1f2937; /* Gray-800 */
+            border-radius: 5px;
         }
         .hour-hand {
-            width: 10px;
-            height: 25%;
-            background-color: #3b82f6; /* Blue-500 */
+            width: 8px;
+            height: 28%;
         }
         .minute-hand {
             width: 6px;
             height: 40%;
-            background-color: #2563eb; /* Blue-600 */
+            background-color: #374151; /* Gray-700 */
         }
         .second-hand {
-            width: 4px;
+            width: 3px;
             height: 45%;
-            background-color: #ef4444; /* Red-500 */
+            background-color: #dc2626; /* Red-600 */
         }
         .center-dot {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 16px;
-            height: 16px;
-            background-color: #ef4444;
-            border: 3px solid white;
+            width: 14px;
+            height: 14px;
+            background-color: #dc2626;
             border-radius: 50%;
             z-index: 10;
         }
@@ -76,51 +70,34 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            /* MODIFIED: Font size is now responsive using viewport width */
-            font-size: clamp(1rem, 8vw, 2rem);
-            color: #374151;
+            font-size: clamp(1rem, 8vw, 1.875rem); /* Responsive font size */
+            font-weight: 600;
+            color: #1f2937;
         }
         .tick {
             position: absolute;
-            background: #4b5563;
-            /* MODIFIED: Removed fixed transform-origin, will be set by JS */
+            background: #6b7280; /* Gray-500 */
         }
         .hour-tick {
             width: 4px;
-            height: 15px;
+            height: 12px;
             left: calc(50% - 2px);
             top: 0;
         }
         .minute-tick {
             width: 2px;
-            height: 8px;
+            height: 6px;
             left: calc(50% - 1px);
             top: 0;
-        }
-        .chalkboard {
-            background-color: #264653;
-            border: 10px solid #e76f51;
-            border-radius: 1rem;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-        .fun-button {
-            border: 3px solid black;
-            font-weight: 600;
-            transition: all 0.15s ease-out;
-            box-shadow: 5px 5px 0px black;
-        }
-        .fun-button:active {
-            transform: translate(5px, 5px);
-            box-shadow: 0px 0px 0px black;
         }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-    <main class="w-full max-w-sm mx-auto space-y-8">
+    <main class="w-full max-w-sm mx-auto space-y-6">
         
-        <!-- Analog Clock Display -->
-        <div class="flex justify-center clock-container">
+        <!-- Clock Card -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
             <div class="clock" id="clock">
                 <div class="clock-face">
                     <!-- JS will generate hour numbers and ticks here -->
@@ -132,22 +109,23 @@
             </div>
         </div>
 
-        <!-- Digital and Text Display -->
-        <div class="chalkboard p-6 text-center text-white">
-            <p id="digital-display" class="font-mono text-4xl tracking-widest">00:00:00</p>
-            <p id="text-display" class="text-lg text-gray-300 mt-2 h-14 flex items-center justify-center">Let's learn the time!</p>
+        <!-- Display Card -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <p id="digital-display" class="text-4xl font-bold text-gray-800 tracking-wider">00:00:00</p>
+            <p id="text-display" class="text-lg text-gray-600 mt-2 h-8 flex items-center justify-center">Let's learn the time!</p>
         </div>
 
-        <!-- Controls -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <input type="number" id="hour-input" placeholder="Hr" min="1" max="12" class="w-24 p-3 text-center text-2xl font-bold border-4 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-300 focus:outline-none">
-                <span class="text-4xl font-bold text-gray-400">:</span>
-                <input type="number" id="minute-input" placeholder="Min" min="0" max="59" class="w-24 p-3 text-center text-2xl font-bold border-4 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-300 focus:outline-none">
+        <!-- Controls Card -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-700 text-center mb-4">Controls</h3>
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <input type="number" id="hour-input" placeholder="HH" min="1" max="12" class="w-full p-3 text-center text-lg bg-gray-100 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                <span class="text-2xl font-bold text-gray-400">:</span>
+                <input type="number" id="minute-input" placeholder="MM" min="0" max="59" class="w-full p-3 text-center text-lg bg-gray-100 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
             </div>
-            <div class="space-y-4">
-                <button id="set-time-btn" class="fun-button w-full p-3 bg-green-400 text-black text-lg rounded-lg">Set Manual Time</button>
-                <button id="current-time-btn" class="fun-button w-full p-3 bg-blue-400 text-black text-lg rounded-lg">Use Current Time</button>
+            <div class="space-y-3">
+                <button id="set-time-btn" class="w-full p-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">Set Manual Time</button>
+                <button id="current-time-btn" class="w-full p-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 transition">Use Current Time</button>
             </div>
         </div>
     </main>
@@ -171,7 +149,6 @@
             let clockInterval = null;
 
             // --- Clock Drawing and Initialization ---
-
             function createClockFace() {
                 for (let i = 1; i <= 12; i++) {
                     const angle = i * 30;
@@ -190,7 +167,6 @@
             }
 
             // --- Time Conversion and Display Logic ---
-
             function timeToWords(h, m) {
                 const hours = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
                 const minutes = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "quarter", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "half"];
@@ -223,7 +199,6 @@
             }
 
             // --- Event Handlers ---
-            
             function startRealTimeClock() {
                 if (clockInterval) clearInterval(clockInterval);
                 const now = new Date();
@@ -245,8 +220,8 @@
                 const manualDate = new Date();
                 const currentHour = new Date().getHours();
                 if (h === 12) h = 0;
-                if (currentHour >= 12) {
-                    if (h < 12) h += 12;
+                if (currentHour >= 12 && h < 12) {
+                    h += 12;
                 }
                 manualDate.setHours(h);
                 manualDate.setMinutes(m);
@@ -256,7 +231,7 @@
 
             currentTimeBtn.addEventListener('click', startRealTimeClock);
 
-            // --- NEW: ResizeObserver to handle responsive tick marks ---
+            // --- ResizeObserver to handle responsive tick marks ---
             const resizeObserver = new ResizeObserver(entries => {
                 for (let entry of entries) {
                     const clockRadius = entry.contentRect.width / 2;
@@ -269,7 +244,7 @@
 
             // --- Initial Load ---
             createClockFace();
-            resizeObserver.observe(clock); // Start observing the clock element for size changes
+            resizeObserver.observe(clock);
             startRealTimeClock();
         });
     </script>

@@ -1,63 +1,299 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Anime Data Generator</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Meta Icon -->
-  <link expr:href='data:blog.homepageUrl + &quot;/favicon.ico&quot;' rel='icon' type='image/x-icon'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon' sizes='57x57'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon' sizes='72x72'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon' sizes='76x76'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon' sizes='114x114'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon' sizes='120x120'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' sizes='144x144'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon' sizes='152x152'/>
-  <link href='https://jikan.moe/assets/images/favicon/android-chrome-512x512.png' rel='apple-touch-icon' sizes='180x180'/>
-
- <link rel="stylesheet" href="/Anime/src/style.css"/>
-  </head>
-<body>
-  <h1>Anime Data Generator</h1>
-<div id="selectorsContainer">
-  <!-- Resolution Selector -->
-  <select id="resolutionSelect" multiple>
-    <option value="480p">480p</option>
-    <option value="720p">720p</option>
-    <option value="844p">844p</option>
-    <option value="858p">858p</option>
-    <option value="1080p">1080p</option>
-    <option value="2160p">2160p</option>
-  </select>
-
-  <!-- Type Selector -->
-  <select id="typeSelect" multiple>
-    <option value="Dual Audio">Dual Audio</option>
-    <option value="Eng Sub">Eng Sub</option>
-    <option value="BD">BD</option>
-    <option value="WEB">WEB</option>
-  </select>
-</div>
-
-  <div>
-    <input class="search" type="text" id="animeId" placeholder="Anime ID">
-    <button onclick="generateCode()">Search</button>
-  </div>
-
-<div class='genbox' id="generatedDataBox1"></div>
-<div class='genbox' id="generatedDataBox4"></div>
-<div class='genbox' id="generatedDataBox2"></div>
-<div class='genbox' id="generatedDataBox3"></div>
-
-  <button id="copyButton" onclick="copyGeneratedCode()">Copy Code</button>
-  <button id="addButton" onclick="addButton()">Add Button</button>
-  <div class="added-buttons" id="addedButtons"></div>
+  <title>Anime Data Generator</title>
   
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
-  <div id="generatedCodeBox">
-    <div id="generatedCode"></div>                                  
+  <style>
+    /* Custom Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #111827; /* bg-gray-900 */
+    }
+    /* Style for the custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1f2937; /* bg-gray-800 */
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4f46e5; /* bg-indigo-600 */
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4338ca; /* bg-indigo-700 */
+    }
+    .selector-btn.active {
+        background-color: #4f46e5; /* bg-indigo-600 */
+        color: white;
+        border-color: #4f46e5;
+    }
+  </style>
+</head>
+<body class="text-gray-200">
+
+  <div class="container mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
+    
+    <!-- Header -->
+    <header class="text-center mb-10">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Anime Data Generator
+      </h1>
+      <p class="mt-2 text-lg text-gray-400">Search for an anime by ID and select options to generate data.</p>
+    </header>
+
+    <!-- Main Controls -->
+    <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-2xl shadow-2xl border border-gray-700 mb-8">
+      <!-- Search Input and Button -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 mb-8">
+        <input class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition duration-200" type="text" id="animeIdInput" placeholder="Enter Anime ID (e.g., 5114)">
+        <button id="searchButton" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transition-transform transform hover:scale-105">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search</span>
+        </button>
+      </div>
+
+      <!-- Selectors -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+        <!-- Resolution Selector -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-white">Resolution</h3>
+          <div id="resolutionSelector" class="flex flex-wrap gap-2">
+            <button data-value="480p" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">480p</button>
+            <button data-value="720p" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">720p</button>
+            <button data-value="844p" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">844p</button>
+            <button data-value="858p" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">858p</button>
+            <button data-value="1080p" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">1080p</button>
+            <button data-value="2160p" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">2160p</button>
+          </div>
+        </div>
+        <!-- Type Selector -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-white">Type</h3>
+          <div id="typeSelector" class="flex flex-wrap gap-2">
+            <button data-value="Dual Audio" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">Dual Audio</button>
+            <button data-value="Eng Sub" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">Eng Sub</button>
+            <button data-value="BD" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">BD</button>
+            <button data-value="WEB" class="selector-btn px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded-md border border-gray-600 hover:bg-gray-600 transition">WEB</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Generated Data Display -->
+    <div id="dataOutputContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div id="generatedDataBox1" class="genbox bg-gray-800 p-4 rounded-lg shadow-lg min-h-[100px]"><span class="text-gray-500">Data Box 1</span></div>
+      <div id="generatedDataBox2" class="genbox bg-gray-800 p-4 rounded-lg shadow-lg min-h-[100px]"><span class="text-gray-500">Data Box 2</span></div>
+      <div id="generatedDataBox3" class="genbox bg-gray-800 p-4 rounded-lg shadow-lg min-h-[100px]"><span class="text-gray-500">Data Box 3</span></div>
+      <div id="generatedDataBox4" class="genbox bg-gray-800 p-4 rounded-lg shadow-lg min-h-[100px]"><span class="text-gray-500">Data Box 4</span></div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+        <button id="mainCopyButton" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-emerald-500 transition-transform transform hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>Copy All Generated Code</span>
+        </button>
+        <button id="addButton" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-sky-600 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-sky-500 transition-transform transform hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Button</span>
+        </button>
+    </div>
+    
+    <!-- Container for dynamically added buttons -->
+    <div id="addedButtonsContainer" class="flex flex-wrap justify-center gap-3 mb-10 min-h-[40px]"></div>
+
+    <!-- Generated Code Box -->
+    <div class="bg-gray-900 border border-gray-700 rounded-xl shadow-2xl relative">
+        <div class="flex justify-between items-center px-4 py-2 border-b border-gray-700">
+            <span class="text-sm font-semibold text-gray-400">Generated Code</span>
+            <button id="codeCopyButton" class="flex items-center gap-2 text-gray-400 hover:text-white text-sm py-1 px-2 rounded-md transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span id="copyButtonText">Copy</span>
+            </button>
+        </div>
+        <pre class="p-4 text-sm overflow-x-auto"><code id="generatedCode" class="language-html text-gray-300">&lt;!-- Generated code will appear here... --&gt;</code></pre>
+    </div>
+
   </div>
 
-  <script src="/Anime/src/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- STATE ---
+      const selectedResolutions = new Set();
+      const selectedTypes = new Set();
+
+      // --- DOM ELEMENTS ---
+      const resolutionSelector = document.getElementById('resolutionSelector');
+      const typeSelector = document.getElementById('typeSelector');
+      const searchButton = document.getElementById('searchButton');
+      const animeIdInput = document.getElementById('animeIdInput');
+      const generatedCodeEl = document.getElementById('generatedCode');
+      const dataBoxes = {
+          1: document.getElementById('generatedDataBox1'),
+          2: document.getElementById('generatedDataBox2'),
+          3: document.getElementById('generatedDataBox3'),
+          4: document.getElementById('generatedDataBox4'),
+      };
+      const mainCopyButton = document.getElementById('mainCopyButton');
+      const codeCopyButton = document.getElementById('codeCopyButton');
+      const copyButtonText = document.getElementById('copyButtonText');
+      const addButton = document.getElementById('addButton');
+      const addedButtonsContainer = document.getElementById('addedButtonsContainer');
+
+      // --- EVENT LISTENERS ---
+
+      // Event listener for selector buttons (Resolution and Type)
+      const setupSelector = (container, selectedSet) => {
+        container.addEventListener('click', (e) => {
+          if (e.target.tagName === 'BUTTON') {
+            const value = e.target.dataset.value;
+            e.target.classList.toggle('active');
+            if (selectedSet.has(value)) {
+              selectedSet.delete(value);
+            } else {
+              selectedSet.add(value);
+            }
+          }
+        });
+      };
+      
+      setupSelector(resolutionSelector, selectedResolutions);
+      setupSelector(typeSelector, selectedTypes);
+
+      // Event listener for the main search button
+      searchButton.addEventListener('click', generateCode);
+
+      // Event listener for the main copy button
+      mainCopyButton.addEventListener('click', () => copyGeneratedCode(generatedCodeEl, mainCopyButton.querySelector('span')));
+      
+      // Event listener for the copy button inside the code box
+      codeCopyButton.addEventListener('click', () => copyGeneratedCode(generatedCodeEl, copyButtonText));
+      
+      // Event listener for the "Add Button"
+      addButton.addEventListener('click', addDynamicButton);
+
+
+      // --- FUNCTIONS ---
+
+      /**
+       * Fetches data from the Jikan API and populates the UI.
+       * This is a mock function. Replace with actual data generation logic.
+       */
+      async function generateCode() {
+        const animeId = animeIdInput.value.trim();
+        if (!animeId) {
+          alert('Please enter an Anime ID.');
+          return;
+        }
+
+        // Clear previous results
+        Object.values(dataBoxes).forEach(box => box.innerHTML = '');
+        generatedCodeEl.textContent = 'Generating...';
+
+        try {
+            // Example API call (Jikan API v4 for anime details)
+            const response = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
+            if (!response.ok) {
+                throw new Error(`Anime not found or API error (Status: ${response.status})`);
+            }
+            const { data } = await response.json();
+            
+            // Populate data boxes with fetched information
+            dataBoxes[1].innerHTML = `<h4 class="font-bold text-white mb-2">${data.title}</h4><p class="text-sm text-gray-400">${data.synopsis.substring(0, 150)}...</p>`;
+            dataBoxes[2].innerHTML = `<img src="${data.images.webp.large_image_url}" alt="${data.title}" class="w-full h-auto rounded-md object-cover">`;
+            dataBoxes[3].innerHTML = `<p><strong>Type:</strong> ${data.type}</p><p><strong>Episodes:</strong> ${data.episodes}</p><p><strong>Score:</strong> ${data.score}</p>`;
+            dataBoxes[4].innerHTML = `<strong>Genres:</strong><div class="flex flex-wrap gap-1 mt-1">${data.genres.map(g => `<span class="bg-gray-700 text-xs px-2 py-1 rounded-full">${g.name}</span>`).join('')}</div>`;
+
+            // Generate the final code string based on selections
+            const resolutionsText = Array.from(selectedResolutions).join(', ');
+            const typesText = Array.from(selectedTypes).join(', ');
+            
+            const generatedHtml = 
+`<!-- Generated for: ${data.title} -->
+<div class="anime-entry">
+  <h2>${data.title_english || data.title}</h2>
+  <p>ID: ${animeId}</p>
+  <p>Resolutions: ${resolutionsText || 'Not specified'}</p>
+  <p>Types: ${typesText || 'Not specified'}</p>
+</div>`;
+
+            generatedCodeEl.textContent = generatedHtml;
+
+        } catch (error) {
+            generatedCodeEl.textContent = `Error: ${error.message}`;
+            dataBoxes[1].innerHTML = `<p class="text-red-400">${error.message}</p>`;
+        }
+      }
+
+      /**
+       * Copies the content of a given element to the clipboard.
+       * @param {HTMLElement} codeElement - The element containing the code to copy.
+       * @param {HTMLElement} buttonTextElement - The span element inside the button to update text.
+       */
+      function copyGeneratedCode(codeElement, buttonTextElement) {
+        if (!codeElement.textContent || codeElement.textContent.startsWith('<!--')) {
+          alert('Nothing to copy!');
+          return;
+        }
+
+        const textToCopy = codeElement.textContent;
+        // Using the Clipboard API
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          // Success feedback
+          const originalText = buttonTextElement.textContent;
+          buttonTextElement.textContent = 'Copied!';
+          setTimeout(() => {
+            buttonTextElement.textContent = originalText;
+          }, 2000);
+        }).catch(err => {
+          // Error fallback for older browsers or iframes
+          console.error('Failed to copy text: ', err);
+          try {
+              const textArea = document.createElement('textarea');
+              textArea.value = textToCopy;
+              textArea.style.position = 'fixed'; // Avoid scrolling to bottom
+              document.body.appendChild(textArea);
+              textArea.focus();
+              textArea.select();
+              document.execCommand('copy');
+              document.body.removeChild(textArea);
+              
+              const originalText = buttonTextElement.textContent;
+              buttonTextElement.textContent = 'Copied!';
+              setTimeout(() => {
+                buttonTextElement.textContent = originalText;
+              }, 2000);
+          } catch (e) {
+              alert('Failed to copy text automatically. Please copy it manually.');
+          }
+        });
+      }
+
+      /**
+       * Adds a new button to the page.
+       */
+      function addDynamicButton() {
+        const buttonText = prompt("Enter text for the new button:", "New Button");
+        if (buttonText) {
+          const newButton = document.createElement('button');
+          newButton.textContent = buttonText;
+          newButton.className = "px-4 py-2 text-sm font-medium bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-all duration-200 transform hover:scale-110";
+          newButton.onclick = () => alert(`You clicked '${buttonText}'`);
+          addedButtonsContainer.appendChild(newButton);
+        }
+      }
+    });
+  </script>
 </body>
 </html>

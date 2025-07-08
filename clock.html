@@ -8,24 +8,29 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Poppins -->
+    <!-- Google Fonts: Fredoka One for a playful look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background-color: #a7f3d0; /* A soft, friendly green */
+        }
+        .clock-container {
+            font-family: 'Fredoka One', cursive;
         }
         .clock {
-            width: 300px;
-            height: 300px;
-            border: 10px solid #3d4852;
-            background-color: #ffffff;
+            /* MODIFIED: Removed fixed width and height, added responsive properties */
+            width: 100%; /* Take up full width of its container */
+            aspect-ratio: 1 / 1; /* This is the key: forces height to equal width */
+            
+            border: 12px solid #fBBF24; /* Amber-400 */
+            background-color: #fef3c7; /* Amber-100 */
             border-radius: 50%;
             position: relative;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1), inset 0 0 15px rgba(0,0,0,0.05);
+            box-shadow: 0 0 0 10px #f59e0b, 0 15px 30px rgba(0,0,0,0.15);
         }
         .clock-face {
             width: 100%;
@@ -37,31 +42,32 @@
             bottom: 50%;
             left: 50%;
             transform-origin: bottom;
-            background-color: #2d3748;
-            border-radius: 5px;
+            border-radius: 10px;
         }
         .hour-hand {
-            width: 6px;
+            width: 10px;
             height: 25%;
+            background-color: #3b82f6; /* Blue-500 */
         }
         .minute-hand {
-            width: 4px;
+            width: 6px;
             height: 40%;
-            background-color: #4a5568;
+            background-color: #2563eb; /* Blue-600 */
         }
         .second-hand {
-            width: 2px;
+            width: 4px;
             height: 45%;
-            background-color: #e53e3e; /* Red for seconds */
+            background-color: #ef4444; /* Red-500 */
         }
         .center-dot {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background-color: #e53e3e;
+            width: 16px;
+            height: 16px;
+            background-color: #ef4444;
+            border: 3px solid white;
             border-radius: 50%;
             z-index: 10;
         }
@@ -70,36 +76,52 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #2d3748;
+            /* MODIFIED: Font size is now responsive using viewport width */
+            font-size: clamp(1rem, 8vw, 2rem);
+            color: #374151;
         }
         .tick {
             position: absolute;
-            background: #718096;
-            transform-origin: 50% 150px; /* 150px is the radius */
+            background: #4b5563;
+            /* MODIFIED: Removed fixed transform-origin, will be set by JS */
         }
         .hour-tick {
             width: 4px;
-            height: 12px;
+            height: 15px;
             left: calc(50% - 2px);
             top: 0;
         }
         .minute-tick {
             width: 2px;
-            height: 6px;
+            height: 8px;
             left: calc(50% - 1px);
             top: 0;
+        }
+        .chalkboard {
+            background-color: #264653;
+            border: 10px solid #e76f51;
+            border-radius: 1rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .fun-button {
+            border: 3px solid black;
+            font-weight: 600;
+            transition: all 0.15s ease-out;
+            box-shadow: 5px 5px 0px black;
+        }
+        .fun-button:active {
+            transform: translate(5px, 5px);
+            box-shadow: 0px 0px 0px black;
         }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-    <main class="w-full max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8">
+    <main class="w-full max-w-sm mx-auto space-y-8">
         
         <!-- Analog Clock Display -->
-        <div class="flex justify-center mb-6">
-            <div class="clock">
+        <div class="flex justify-center clock-container">
+            <div class="clock" id="clock">
                 <div class="clock-face">
                     <!-- JS will generate hour numbers and ticks here -->
                     <div class="hand hour-hand" id="hour-hand"></div>
@@ -111,22 +133,21 @@
         </div>
 
         <!-- Digital and Text Display -->
-        <div class="text-center mb-8">
-            <p id="digital-display" class="text-5xl font-bold text-gray-800">00:00:00</p>
-            <p id="text-display" class="text-xl text-gray-600 mt-2">Let's learn the time!</p>
+        <div class="chalkboard p-6 text-center text-white">
+            <p id="digital-display" class="font-mono text-4xl tracking-widest">00:00:00</p>
+            <p id="text-display" class="text-lg text-gray-300 mt-2 h-14 flex items-center justify-center">Let's learn the time!</p>
         </div>
 
         <!-- Controls -->
-        <div class="bg-gray-100 p-6 rounded-lg">
-            <h3 class="text-lg font-semibold text-gray-700 text-center mb-4">Set Time Manually</h3>
-            <div class="flex items-center justify-center gap-4 mb-4">
-                <input type="number" id="hour-input" placeholder="HH" min="1" max="12" class="w-20 p-2 text-center text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                <span class="text-2xl font-bold text-gray-500">:</span>
-                <input type="number" id="minute-input" placeholder="MM" min="0" max="59" class="w-20 p-2 text-center text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <input type="number" id="hour-input" placeholder="Hr" min="1" max="12" class="w-24 p-3 text-center text-2xl font-bold border-4 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-300 focus:outline-none">
+                <span class="text-4xl font-bold text-gray-400">:</span>
+                <input type="number" id="minute-input" placeholder="Min" min="0" max="59" class="w-24 p-3 text-center text-2xl font-bold border-4 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-300 focus:outline-none">
             </div>
-            <div class="grid grid-cols-2 gap-4">
-                <button id="set-time-btn" class="w-full p-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">Set Manual Time</button>
-                <button id="current-time-btn" class="w-full p-3 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition">Use Current Time</button>
+            <div class="space-y-4">
+                <button id="set-time-btn" class="fun-button w-full p-3 bg-green-400 text-black text-lg rounded-lg">Set Manual Time</button>
+                <button id="current-time-btn" class="fun-button w-full p-3 bg-blue-400 text-black text-lg rounded-lg">Use Current Time</button>
             </div>
         </div>
     </main>
@@ -134,6 +155,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // --- DOM Elements ---
+            const clock = document.getElementById('clock');
             const clockFace = document.querySelector('.clock-face');
             const hourHand = document.getElementById('hour-hand');
             const minuteHand = document.getElementById('minute-hand');
@@ -150,10 +172,9 @@
 
             // --- Clock Drawing and Initialization ---
 
-            // Function to create hour numbers and tick marks on the clock face
             function createClockFace() {
                 for (let i = 1; i <= 12; i++) {
-                    const angle = i * 30; // 360 / 12 = 30 degrees per hour
+                    const angle = i * 30;
                     const marker = document.createElement('div');
                     marker.className = 'hour-marker';
                     marker.style.transform = `rotate(${angle}deg)`;
@@ -170,51 +191,39 @@
 
             // --- Time Conversion and Display Logic ---
 
-            // Converts numeric time to a descriptive sentence
             function timeToWords(h, m) {
                 const hours = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"];
                 const minutes = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "quarter", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "half"];
-
                 const hour12 = h % 12;
-
+                const nextHour = (h + 1) % 12;
                 if (m === 0) return `It is ${hours[hour12]} o'clock.`;
                 if (m === 15) return `It is quarter past ${hours[hour12]}.`;
                 if (m === 30) return `It is half past ${hours[hour12]}.`;
-                if (m === 45) return `It is quarter to ${hours[(hour12 + 1) % 12]}.`;
-
-                if (m < 30) {
-                    return `It is ${minutes[m]} minute${m > 1 ? 's' : ''} past ${hours[hour12]}.`;
-                } else {
-                    const minutesLeft = 60 - m;
-                    return `It is ${minutes[minutesLeft]} minute${minutesLeft > 1 ? 's' : ''} to ${hours[(hour12 + 1) % 12]}.`;
-                }
+                if (m === 45) return `It is quarter to ${hours[nextHour === 0 ? 12 : nextHour]}.`;
+                if (m < 30) return `It is ${minutes[m]} minute${m > 1 ? 's' : ''} past ${hours[hour12]}.`;
+                const minutesLeft = 60 - m;
+                return `It is ${minutes[minutesLeft]} minute${minutesLeft > 1 ? 's' : ''} to ${hours[nextHour === 0 ? 12 : nextHour]}.`;
             }
 
-            // Main function to update the clock visuals and text
             function setClock(date) {
                 const seconds = date.getSeconds();
                 const minutes = date.getMinutes();
                 const hours = date.getHours();
-
                 const secondsDegrees = (seconds / 60) * 360;
                 const minutesDegrees = (minutes / 60) * 360 + (seconds / 60) * 6;
                 const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30;
-
                 secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
                 minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
                 hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
-
                 const formattedHour = String(hours % 12 === 0 ? 12 : hours % 12).padStart(2, '0');
                 const formattedMinute = String(minutes).padStart(2, '0');
                 const formattedSecond = String(seconds).padStart(2, '0');
                 digitalDisplay.textContent = `${formattedHour}:${formattedMinute}:${formattedSecond}`;
-
                 textDisplay.textContent = timeToWords(hours, minutes);
             }
 
             // --- Event Handlers ---
             
-            // Set clock to real-time and update every second
             function startRealTimeClock() {
                 if (clockInterval) clearInterval(clockInterval);
                 const now = new Date();
@@ -225,31 +234,42 @@
                 }, 1000);
             }
 
-            // Set clock based on manual input
             setTimeBtn.addEventListener('click', () => {
-                const h = parseInt(hourInput.value);
+                let h = parseInt(hourInput.value);
                 const m = parseInt(minuteInput.value);
-
                 if (isNaN(h) || isNaN(m) || h < 1 || h > 12 || m < 0 || m > 59) {
                     alert("Please enter a valid time (Hour: 1-12, Minute: 0-59).");
                     return;
                 }
-                
-                // Stop the real-time updates
                 if (clockInterval) clearInterval(clockInterval);
-
                 const manualDate = new Date();
+                const currentHour = new Date().getHours();
+                if (h === 12) h = 0;
+                if (currentHour >= 12) {
+                    if (h < 12) h += 12;
+                }
                 manualDate.setHours(h);
                 manualDate.setMinutes(m);
-                manualDate.setSeconds(0); // Reset seconds for static display
-                
+                manualDate.setSeconds(0);
                 setClock(manualDate);
             });
 
             currentTimeBtn.addEventListener('click', startRealTimeClock);
 
+            // --- NEW: ResizeObserver to handle responsive tick marks ---
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const clockRadius = entry.contentRect.width / 2;
+                    const ticks = document.querySelectorAll('.tick');
+                    ticks.forEach(tick => {
+                        tick.style.transformOrigin = `50% ${clockRadius}px`;
+                    });
+                }
+            });
+
             // --- Initial Load ---
             createClockFace();
+            resizeObserver.observe(clock); // Start observing the clock element for size changes
             startRealTimeClock();
         });
     </script>
